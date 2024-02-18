@@ -1,5 +1,14 @@
-const Setting = {
-  PlacesCount: 5
-} as const;
+export const PLACES_COUNT = 5;
 
-export {Setting};
+export enum AppRoute {
+  Main = '/',
+  Login = '/login',
+  Favorites = '/favorites',
+  Offer = '/offer/:id',
+}
+
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
