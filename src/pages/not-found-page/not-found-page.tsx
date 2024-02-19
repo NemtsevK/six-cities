@@ -1,8 +1,8 @@
 import {Link} from 'react-router-dom';
-import Logo from '../../components/logo/logo.tsx';
 import {Helmet} from 'react-helmet-async';
+import {Logo} from '../../components/logo/logo.tsx';
 
-function NotFoundPage(): JSX.Element {
+export function NotFoundPage(): JSX.Element {
   return (
     <div className="page page--gray page--login">
       <Helmet>
@@ -31,5 +31,3 @@ function NotFoundPage(): JSX.Element {
     </div>
   );
 }
-
-export default NotFoundPage;

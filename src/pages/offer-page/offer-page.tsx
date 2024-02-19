@@ -1,7 +1,7 @@
-import Logo from '../../components/logo/logo.tsx';
 import {Helmet} from 'react-helmet-async';
+import {Logo} from '../../components/logo/logo.tsx';
 
-function OfferPage(): JSX.Element {
+export function OfferPage(): JSX.Element {
   return (
     <div className="page">
       <Helmet>
@@ -339,5 +339,3 @@ function OfferPage(): JSX.Element {
     </div>
   );
 }
-
-export default OfferPage;

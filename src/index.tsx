@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/app/app';
-import {PLACES_COUNT} from './const';
+import {BrowserRouter} from 'react-router-dom';
+import {HelmetProvider} from 'react-helmet-async';
+import {App} from './components/app/app.tsx';
+import {PLACES_COUNT} from './const.ts';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -9,6 +11,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App placesCount={PLACES_COUNT}/>
+    <HelmetProvider>
+      <BrowserRouter>
+        <App placesCount={PLACES_COUNT}/>
+      </BrowserRouter>
+    </HelmetProvider>
   </React.StrictMode>,
 );
