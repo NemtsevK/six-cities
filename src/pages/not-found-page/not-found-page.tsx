@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
-import {Logo} from '../../components/logo/logo.tsx';
+import {Header} from '../../components/header/header.tsx';
 
 export function NotFoundPage(): JSX.Element {
   return (
@@ -8,16 +8,7 @@ export function NotFoundPage(): JSX.Element {
       <Helmet>
         <title>6 cities. Page not found</title>
       </Helmet>
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <Logo/>
-            </div>
-          </div>
-        </div>
-      </header>
-
+      <Header isActive={false} isNav={false}/>
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login form">
