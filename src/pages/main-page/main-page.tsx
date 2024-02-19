@@ -1,14 +1,14 @@
-import PlaceCard from '../../components/place-card/place-card';
-import Header from '../../components/header/header';
+import {PlaceCard} from '../../components/place-card/place-card.tsx';
+import {Header} from '../../components/header/header.tsx';
 
 type MainPageProps = {
   placesCount: number;
 }
 
-function MainPage({placesCount}: MainPageProps): JSX.Element {
+export function MainPage({placesCount}: MainPageProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
-      <Header/>
+      <Header isActive isNav/>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
@@ -80,5 +80,3 @@ function MainPage({placesCount}: MainPageProps): JSX.Element {
     </div>
   );
 }
-
-export default MainPage;
