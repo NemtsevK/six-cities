@@ -1,7 +1,8 @@
 import {users} from './users.ts';
 import {getRandomItem} from '../utils.ts';
+import {Reviews} from '../types/reviews.ts';
 
-export const reviews = [
+export const reviews: Reviews = [
   {
     id: 'r-01',
     date: '2019-05-08T14:13:56.569Z',

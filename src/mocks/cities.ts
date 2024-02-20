@@ -1,4 +1,6 @@
-export const cities = [
+import {Cities} from '../types/cities.ts';
+
+export const cities: Cities = [
   {
     name: 'Amsterdam',
     location: {
@@ -42,3 +44,9 @@ export const cities = [
     },
   },
 ];
+
+export class Location {
+}
+
+export class City {
+}

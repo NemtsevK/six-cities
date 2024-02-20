@@ -1,6 +1,7 @@
-const AVATAR_URL = 'https://i.pravatar.cc/128';
+import {Users} from '../types/users.ts';
+import {AVATAR_URL} from '../const.ts';
 
-export const users = [
+export const users: Users = [
   {
     name: 'Oliver Conner',
     avatarUrl: `${AVATAR_URL}?rnd=${Math.random()}`,

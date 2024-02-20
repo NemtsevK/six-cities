@@ -1,7 +1,8 @@
 import {cities} from './cities.ts';
 import {getRandomItem} from '../utils.ts';
+import {Offers} from '../types/offers.ts';
 
-export const offers = [
+export const offers: Offers = [
   {
     id: 'of-01',
     title: 'Beautiful & luxurious studio at great location',
