@@ -1,4 +1,4 @@
-import {User} from './users.ts';
+import {User} from './user.ts';
 
 export type Review = {
   id: string;
@@ -7,5 +7,3 @@ export type Review = {
   comment: string;
   rating: number;
 };
-
-export type Reviews = Review[];

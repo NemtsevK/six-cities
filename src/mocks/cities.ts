@@ -1,18 +1,12 @@
-import {Cities} from '../types/cities.ts';
+import {City} from '../types/city.ts';
 
-export const cities: Cities = [
-  {
-    name: 'Amsterdam',
-    location: {
-      latitude: 52.379189,
-      longitude: 4.899431,
-    },
-  },
+export const cities: City[] = [
   {
     name: 'Paris',
     location: {
       latitude: 48.8566,
       longitude: 2.3522,
+      zoom: 10,
     },
   },
   {
@@ -20,6 +14,7 @@ export const cities: Cities = [
     location: {
       latitude: 50.9375,
       longitude: 6.9603,
+      zoom: 5,
     },
   },
   {
@@ -27,6 +22,15 @@ export const cities: Cities = [
     location: {
       latitude: 50.8503,
       longitude: 4.3517,
+      zoom: 12,
+    },
+  },
+  {
+    name: 'Amsterdam',
+    location: {
+      latitude: 52.379189,
+      longitude: 4.899431,
+      zoom: 8,
     },
   },
   {
@@ -34,6 +38,7 @@ export const cities: Cities = [
     location: {
       latitude: 53.5511,
       longitude: 9.9937,
+      zoom: 14,
     },
   },
   {
@@ -41,12 +46,7 @@ export const cities: Cities = [
     location: {
       latitude: 51.2277,
       longitude: 6.7735,
+      zoom: 16,
     },
   },
 ];
-
-export class Location {
-}
-
-export class City {
-}

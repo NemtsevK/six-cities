@@ -1,8 +1,15 @@
+import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
+import {AppRoute} from '../../const.ts';
 import {Header} from '../../components/header/header.tsx';
-import {FavoritesList} from '../../components/favorites-list/favorites-list.tsx';
+import {Favorites} from '../../components/favorites/favorites.tsx';
+import {Offer} from '../../types/offer.ts';
 
-export function FavoritesPage(): JSX.Element {
+type OfferListProps = {
+  offers: Offer[];
+}
+
+export function FavoritesPage({offers}: OfferListProps): JSX.Element {
   return (
     <div className="page">
       <Helmet>
@@ -13,14 +20,14 @@ export function FavoritesPage(): JSX.Element {
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
-            <FavoritesList />
+            <Favorites offers={offers}/>
           </section>
         </div>
       </main>
       <footer className="footer container">
-        <a className="footer__logo-link" href="main.html">
+        <Link className="footer__logo-link" to={AppRoute.Main}>
           <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
-        </a>
+        </Link>
       </footer>
     </div>
   );
