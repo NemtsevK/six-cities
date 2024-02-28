@@ -1,10 +1,10 @@
 import {Navigate, useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 import {AppRoute} from '../../const';
+import {getRatingWidth} from '../../utils.ts';
 import {Header} from '../../components/header/header.tsx';
 import {ReviewForm} from '../../components/review-form/review-form.tsx';
 import {Offer} from '../../types/offer.ts';
-import {getRatingWidth} from '../../utils.ts';
 
 type OfferPageProps = {
   offers: Offer[];
@@ -13,7 +13,6 @@ type OfferPageProps = {
 export function OfferPage({offers}: OfferPageProps): JSX.Element {
   const {offerId} = useParams();
   const offer = offers.find((item) => item.id.toString() === offerId);
-
 
   if (!offer) {
     return <Navigate to={AppRoute.NotFound}/>;

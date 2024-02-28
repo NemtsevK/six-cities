@@ -1,11 +1,11 @@
 import {SyntheticEvent, useState} from 'react';
 import { NavLink } from 'react-router-dom';
-import {Offer} from '../../types/offer.ts';
-import {City} from '../../types/city.ts';
+import {AppRoute, DEFAULT_CITY} from '../../const.ts';
 import {Header} from '../../components/header/header.tsx';
 import {OffersList} from '../../components/offers-list/offers-list.tsx';
 import {NoOffers} from '../../components/no-offers/no-offers.tsx';
-import {AppRoute, DEFAULT_CITY} from '../../const.ts';
+import {Offer} from '../../types/offer.ts';
+import {City} from '../../types/city.ts';
 
 type MainPageProps = {
   offers: Offer[];
@@ -31,8 +31,8 @@ export function MainPage({offers, locations}: MainPageProps): JSX.Element {
                     <NavLink
                       className={`locations__item-link tabs__item ${isActive(item)}`}
                       to={AppRoute.Main}
-                      onClick={(evt: SyntheticEvent) => {
-                        evt.preventDefault();
+                      onClick={(event: SyntheticEvent) => {
+                        event.preventDefault();
                         setCurrentLocation(item);
                       }}
                     >

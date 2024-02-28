@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import {OfferCard} from '../offer-card/offer-card.tsx';
 import {Offer} from '../../types/offer.ts';
 import {City} from '../../types/city.ts';
-import {OfferCard} from '../offer-card/offer-card.tsx';
 
 type OfferListProps = {
   currentLocation: City;

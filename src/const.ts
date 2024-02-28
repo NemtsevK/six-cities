@@ -16,6 +16,8 @@ export enum AuthorizationStatus {
 
 export const AVATAR_URL = 'https://i.pravatar.cc/128';
 
+export const HOTEL_IMAGE_URL = 'https://loremflickr.com/260/200/hotel';
+
 export const MAX_RATING = 5;
 
 export const DEFAULT_CITY = cities[3];
