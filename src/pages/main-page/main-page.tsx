@@ -1,5 +1,4 @@
 import {SyntheticEvent, useState} from 'react';
-import { NavLink } from 'react-router-dom';
 import {AppRoute, DEFAULT_CITY} from '../../const.ts';
 import {Header} from '../../components/header/header.tsx';
 import {OffersList} from '../../components/offers-list/offers-list.tsx';
@@ -28,16 +27,16 @@ export function MainPage({offers, locations}: MainPageProps): JSX.Element {
               {
                 locations.map((item) => (
                   <li key={item.name} className="locations__item">
-                    <NavLink
+                    <a
                       className={`locations__item-link tabs__item ${isActive(item)}`}
-                      to={AppRoute.Main}
+                      href={AppRoute.Main}
                       onClick={(event: SyntheticEvent) => {
                         event.preventDefault();
                         setCurrentLocation(item);
                       }}
                     >
                       <span>{item.name}</span>
-                    </NavLink>
+                    </a>
                   </li>))
               }
             </ul>

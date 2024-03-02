@@ -1,10 +1,10 @@
-import {Navigate, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
-import {AppRoute} from '../../const';
 import {getRatingWidth} from '../../utils.ts';
 import {Header} from '../../components/header/header.tsx';
 import {ReviewForm} from '../../components/review-form/review-form.tsx';
 import {Offer} from '../../types/offer.ts';
+import {NotFoundPage} from '../not-found-page/not-found-page.tsx';
 
 type OfferPageProps = {
   offers: Offer[];
@@ -15,7 +15,7 @@ export function OfferPage({offers}: OfferPageProps): JSX.Element {
   const offer = offers.find((item) => item.id.toString() === offerId);
 
   if (!offer) {
-    return <Navigate to={AppRoute.NotFound}/>;
+    return <NotFoundPage/>;
   }
 
   return (
@@ -31,7 +31,7 @@ export function OfferPage({offers}: OfferPageProps): JSX.Element {
               {
                 offer.images.map((image) => (
                   <div key={image} className="offer__image-wrapper">
-                    <img className="offer__image" src={image} alt={offer.description} />
+                    <img className="offer__image" src={image} alt={offer.description}/>
                   </div>
                 ))
               }
@@ -134,7 +134,7 @@ export function OfferPage({offers}: OfferPageProps): JSX.Element {
                     </div>
                   </li>
                 </ul>
-                <ReviewForm />
+                <ReviewForm/>
               </section>
             </div>
           </div>

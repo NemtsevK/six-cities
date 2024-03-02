@@ -11,7 +11,7 @@ type OfferListProps = {
 export function OffersList({currentLocation, currentOffers}: OfferListProps): JSX.Element {
   const [, setHoveredOfferId] = useState<Offer['id'] | null>(null);
 
-  function onCardHover (offerId: Offer['id'] | null) {
+  function handleCardHover (offerId: Offer['id'] | null) {
     setHoveredOfferId(offerId);
   }
 
@@ -41,7 +41,7 @@ export function OffersList({currentLocation, currentOffers}: OfferListProps): JS
               key={offer.id}
               offer={offer}
               block="cities"
-              onCardHover={onCardHover}
+              onCardHover={handleCardHover}
             />
           ))}
         </div>
