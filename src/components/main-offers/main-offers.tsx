@@ -27,6 +27,7 @@ export function MainOffers({currentLocation, currentOffers}: OfferListProps): JS
         city={currentLocation}
         offers={currentOffers}
         activeCardId={activeCardId}
+        className={'cities__map'}
       />
     </div>
   );

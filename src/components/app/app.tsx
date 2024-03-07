@@ -7,12 +7,14 @@ import {OfferPage} from '../../pages/offer-page/offer-page.tsx';
 import {NotFoundPage} from '../../pages/not-found-page/not-found-page.tsx';
 import {PrivateRoute} from '../private-route/private-route.tsx';
 import {Offer} from '../../types/offer.ts';
+import {reviews} from '../../mocks/reviews.ts';
 
 type AppProps = {
   offers: Offer[];
+  nearbyOffers: Offer[];
 }
 
-export function App({offers}: AppProps): JSX.Element {
+export function App({offers, nearbyOffers}: AppProps): JSX.Element {
   return (
     <Routes>
       <Route
@@ -31,7 +33,7 @@ export function App({offers}: AppProps): JSX.Element {
       />
       <Route
         path={`${AppRoute.Offer}/:offerId`}
-        element={<OfferPage offers={offers}/>}
+        element={<OfferPage offers={offers} reviews={reviews} nearbyOffers={nearbyOffers}/>}
       />
       <Route
         path={AppRoute.Login}

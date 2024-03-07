@@ -8,10 +8,11 @@ import {DEFAULT_ICON, CURRENT_ICON} from './const';
 type MapProps = {
   city: City;
   offers: Offer[];
-  activeCardId: string | null;
+  activeCardId: Offer['id'] | null;
+  className: string;
 }
 
-export function Map({city, offers, activeCardId}: MapProps): JSX.Element {
+export function Map({city, offers, activeCardId, className}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap({mapRef, city});
 
@@ -38,8 +39,14 @@ export function Map({city, offers, activeCardId}: MapProps): JSX.Element {
   return (
     <div className="cities__right-section">
       <section
-        className="cities__map map"
-        style={{minHeight: '100%'}}
+        className={`${className} map`}
+        style={{
+          height: '100%',
+          minHeight: '500px',
+          width: '100%',
+          maxWidth: '1144px',
+          margin: '0 auto',
+        }}
         ref={mapRef}
       >
       </section>
