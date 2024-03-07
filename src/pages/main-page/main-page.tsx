@@ -1,10 +1,11 @@
 import {SyntheticEvent, useState} from 'react';
 import {AppRoute, DEFAULT_CITY} from '../../const.ts';
 import {Header} from '../../components/header/header.tsx';
-import {OffersList} from '../../components/offers-list/offers-list.tsx';
+import {MainOffers} from '../../components/main-offers/main-offers.tsx';
 import {NoOffers} from '../../components/no-offers/no-offers.tsx';
 import {Offer} from '../../types/offer.ts';
 import {City} from '../../types/city.ts';
+
 
 type MainPageProps = {
   offers: Offer[];
@@ -45,7 +46,7 @@ export function MainPage({offers, locations}: MainPageProps): JSX.Element {
         <div className="cities">
           {
             currentOffers.length > 0
-              ? <OffersList currentLocation={currentLocation} currentOffers={currentOffers}/>
+              ? <MainOffers currentLocation={currentLocation} currentOffers={currentOffers}/>
               : <NoOffers currentLocation={currentLocation}/>
           }
         </div>
