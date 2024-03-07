@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import {OfferCard} from '../offer-card/offer-card.tsx';
+import {Map} from '../map/map.tsx';
 import {Offer} from '../../types/offer.ts';
 import {City} from '../../types/city.ts';
 
@@ -9,9 +10,9 @@ type OfferListProps = {
 }
 
 export function OffersList({currentLocation, currentOffers}: OfferListProps): JSX.Element {
-  const [, setHoveredOfferId] = useState<Offer['id'] | null>(null);
+  const [activeCardId, setHoveredOfferId] = useState<Offer['id'] | null>(null);
 
-  function handleCardHover (offerId: Offer['id'] | null) {
+  function handleCardHover(offerId: Offer['id'] | null) {
     setHoveredOfferId(offerId);
   }
 
@@ -46,9 +47,11 @@ export function OffersList({currentLocation, currentOffers}: OfferListProps): JS
           ))}
         </div>
       </section>
-      <div className="cities__right-section">
-        <section className="cities__map map"></section>
-      </div>
+      <Map
+        city={currentLocation}
+        offers={currentOffers}
+        activeCardId={activeCardId}
+      />
     </div>
   );
 }
