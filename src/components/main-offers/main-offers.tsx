@@ -10,7 +10,7 @@ type OfferListProps = {
 }
 
 export function MainOffers({currentLocation, currentOffers}: OfferListProps): JSX.Element {
-  const [activeCardId, setHoveredOfferId] = useState<Offer['id'] | null>(null);
+  const [activeOfferId, setHoveredOfferId] = useState<Offer['id'] | null>(null);
 
   function handleCardHover(offerId: Offer['id'] | null) {
     setHoveredOfferId(offerId);
@@ -23,11 +23,14 @@ export function MainOffers({currentLocation, currentOffers}: OfferListProps): JS
         currentOffers={currentOffers}
         onCardHover={handleCardHover}
       />
-      <Map
-        city={currentLocation}
-        offers={currentOffers}
-        activeCardId={activeCardId}
-      />
+      <div className="cities__right-section">
+        <Map
+          city={currentLocation}
+          offers={currentOffers}
+          activeOfferId={activeOfferId}
+          className={'cities__map'}
+        />
+      </div>
     </div>
   );
 }
