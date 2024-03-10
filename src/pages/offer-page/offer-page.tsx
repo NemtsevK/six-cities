@@ -5,26 +5,29 @@ import {getRatingWidth} from '../../utils.ts';
 import {Header} from '../../components/header/header.tsx';
 import {ReviewForm} from '../../components/review-form/review-form.tsx';
 import {ReviewsList} from '../../components/reviews-list/reviews-list.tsx';
-import {NearbyPlaces} from '../../components/nearby-places/nearby-places.tsx';
+import {NearPlaces} from '../../components/near-places/near-places.tsx';
 import {Map} from '../../components/map/map.tsx';
 import {Offer} from '../../types/offer.ts';
 import {Review} from '../../types/review.ts';
 import {NotFoundPage} from '../not-found-page/not-found-page.tsx';
+import {getNearOffers} from './utils.ts';
 
 type OfferPageProps = {
   offers: Offer[];
   reviews: Review[];
-  nearbyOffers: Offer[];
 }
 
-export function OfferPage({offers, reviews, nearbyOffers}: OfferPageProps): JSX.Element {
-  const [chosenCard, setChosenCard] = useState<string | null>(null);
+export function OfferPage({offers, reviews}: OfferPageProps): JSX.Element {
+  const [chosenOffer, setChosenCard] = useState<string | null>(null);
   const {offerId} = useParams();
   const offer = offers.find((item) => item.id.toString() === offerId);
 
   if (!offer) {
     return <NotFoundPage/>;
   }
+
+  const nearOffers = getNearOffers(offer);
+  const nearOffersPlusCurrent = [offer, ...nearOffers];
 
   return (
     <div className="page">
@@ -124,12 +127,12 @@ export function OfferPage({offers, reviews, nearbyOffers}: OfferPageProps): JSX.
           </div>
           <Map
             city={offer.city}
-            offers={nearbyOffers}
-            activeCardId={chosenCard}
+            offers={nearOffersPlusCurrent}
+            activeOfferId={chosenOffer}
             className='offer__map'
           />
         </section>
-        <NearbyPlaces nearbyPlaces={nearbyOffers} setChosenCard={setChosenCard}/>
+        <NearPlaces nearPlaces={nearOffers} setChosenCard={setChosenCard}/>
       </main>
     </div>
   );

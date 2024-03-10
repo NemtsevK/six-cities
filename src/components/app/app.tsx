@@ -11,10 +11,9 @@ import {reviews} from '../../mocks/reviews.ts';
 
 type AppProps = {
   offers: Offer[];
-  nearbyOffers: Offer[];
 }
 
-export function App({offers, nearbyOffers}: AppProps): JSX.Element {
+export function App({offers}: AppProps): JSX.Element {
   return (
     <Routes>
       <Route
@@ -33,7 +32,7 @@ export function App({offers, nearbyOffers}: AppProps): JSX.Element {
       />
       <Route
         path={`${AppRoute.Offer}/:offerId`}
-        element={<OfferPage offers={offers} reviews={reviews} nearbyOffers={nearbyOffers}/>}
+        element={<OfferPage offers={offers} reviews={reviews}/>}
       />
       <Route
         path={AppRoute.Login}

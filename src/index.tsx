@@ -13,7 +13,7 @@ root.render(
   <React.StrictMode>
     <HelmetProvider>
       <BrowserRouter>
-        <App offers={offers} nearbyOffers={offers}/>
+        <App offers={offers}/>
       </BrowserRouter>
     </HelmetProvider>
   </React.StrictMode>,
