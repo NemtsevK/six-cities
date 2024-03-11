@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import cn from 'classnames';
-import {SortingMap} from '../../const';
-import {TSorting} from '../../types/sorting';
+import {SortingMap} from '../../const.ts';
+import {TSorting} from '../../types/sorting.ts';
 
 type SortingProps = {
   activeSorting: TSorting;

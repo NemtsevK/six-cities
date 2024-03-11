@@ -1,3 +1,4 @@
+import React from 'react';
 import cn from 'classnames';
 import {Cities} from '../../const';
 import {useAppDispatch, useAppSelector} from '../../hooks';
@@ -9,8 +10,8 @@ export function LocationsList(): JSX.Element {
   const dispatch = useAppDispatch();
   const cities = Object.values(Cities);
 
-  const handleCityClick = (city: CityName) => (evt: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
-    evt.preventDefault();
+  const handleCityClick = (city: CityName) => (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
+    event.preventDefault();
     dispatch(setCurrentCity(city));
   };
 

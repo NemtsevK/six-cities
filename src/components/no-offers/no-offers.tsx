@@ -1,7 +1,7 @@
-import {Cities} from '../../const';
+import {CityName} from '../../types/city-name.ts';
 
 type NoOffersProps = {
-  currentLocation: keyof typeof Cities;
+  currentLocation: CityName;
 }
 
 export function NoOffers({currentLocation}: NoOffersProps): JSX.Element {

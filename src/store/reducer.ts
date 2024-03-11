@@ -1,8 +1,8 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {DEFAULT_CITY} from '../const';
-import {Offer} from '../types/offer';
-import {setCurrentCity, setOffers} from './action';
-import {CityName} from '../types/city-name';
+import {setCurrentCity, setOffers} from './action.ts';
+import {DEFAULT_CITY} from '../const.ts';
+import {Offer} from '../types/offer.ts';
+import {CityName} from '../types/city-name.ts';
 
 const initialState = {
   offers: [] as Offer[],

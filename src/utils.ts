@@ -1,4 +1,4 @@
-import { Offer } from './types/offer';
+import {Offer} from './types/offer.ts';
 
 import {AVATAR_URL, MAX_RATING, HOTEL_IMAGE_URL} from './const.ts';
 
@@ -20,11 +20,11 @@ export function getRandomBoolean() {
 }
 
 export function getRandomAvatar() {
-  return `${AVATAR_URL}?rnd=${getRandomNumber(1,1000)}`;
+  return `${AVATAR_URL}?rnd=${getRandomNumber(1, 1000)}`;
 }
 
 export function getRandomHotelImage() {
-  return `${HOTEL_IMAGE_URL}?rnd=${getRandomNumber(1,1000)}`;
+  return `${HOTEL_IMAGE_URL}?rnd=${getRandomNumber(1, 1000)}`;
 }
 
 function sortByRating(itemA: Offer, itemB: Offer) {

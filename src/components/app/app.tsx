@@ -1,3 +1,4 @@
+import {useEffect} from 'react';
 import {Route, Routes} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const.ts';
 import {MainPage} from '../../pages/main-page/main-page.tsx';
@@ -6,16 +7,12 @@ import {LoginPage} from '../../pages/login-page/login-page.tsx';
 import {OfferPage} from '../../pages/offer-page/offer-page.tsx';
 import {NotFoundPage} from '../../pages/not-found-page/not-found-page.tsx';
 import {PrivateRoute} from '../private-route/private-route.tsx';
-// import {Offer} from '../../types/offer.ts';
+import {mockOffers} from '../../mocks/offers.ts';
 import {reviews} from '../../mocks/reviews.ts';
-import {useEffect} from 'react';
-import {setOffers} from '../../store/action';
+import {setOffers} from '../../store/action.ts';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {mockOffers} from '../../mocks/offers';
-
 
 export function App(): JSX.Element {
-
   const dispatch = useAppDispatch();
   const offers = useAppSelector((state) => state.offers);
 

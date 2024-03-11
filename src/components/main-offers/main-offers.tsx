@@ -2,10 +2,10 @@ import {useState} from 'react';
 import {Map} from '../map/map.tsx';
 import {Offer} from '../../types/offer.ts';
 import {MainOffersList} from './main-offers-list/main-offers-list.tsx';
-import {Cities} from '../../const';
+import {CityName} from '../../types/city-name.ts';
 
 type OfferListProps = {
-  currentLocation: keyof typeof Cities;
+  currentLocation: CityName;
   currentOffers: Offer[];
 }
 

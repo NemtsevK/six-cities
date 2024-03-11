@@ -1,5 +1,5 @@
 import {ChangeEvent, Fragment, useState} from 'react';
-import {RATING_MAP, MAX_COMMENT_LENGTH, MIN_COMMENT_LENGTH} from '../../const';
+import {RATING_MAP, MAX_COMMENT_LENGTH, MIN_COMMENT_LENGTH} from '../../const.ts';
 
 export function ReviewForm() {
   const [comment, setComment] = useState('');

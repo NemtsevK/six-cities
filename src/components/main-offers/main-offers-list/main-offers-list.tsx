@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {OfferCard} from '../../offer-card/offer-card.tsx';
 import {Offer} from '../../../types/offer.ts';
-import { Cities} from '../../../const';
+import {CityName} from '../../../types/city-name.ts';
 import {TSorting} from '../../../types/sorting.ts';
 import {Sorting} from '../../sorting/sorting.tsx';
 import {DEFAULT_SORTING_OPTION} from '../../../const.ts';
@@ -9,7 +9,7 @@ import {sorting} from '../../../utils.ts';
 
 
 type OfferListProps = {
-  currentLocation: keyof typeof Cities;
+  currentLocation: CityName;
   currentOffers: Offer[];
   onCardHover: (offerId: Offer['id'] | null) => void;
 }
@@ -22,7 +22,6 @@ export function MainOffersList({currentLocation, currentOffers, onCardHover}: Of
   }
 
   const sortedOffers = sorting[activeSorting](currentOffers);
-
 
   return (
     <section className="cities__places places">
