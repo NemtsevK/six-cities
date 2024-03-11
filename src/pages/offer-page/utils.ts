@@ -1,4 +1,4 @@
-import {offers} from '../../mocks/offers.ts';
+import {mockOffers as offers} from '../../mocks/offers.ts';
 import {Offer} from '../../types/offer.ts';
 
 const MAX_NEAR_OFFERS = 3;
