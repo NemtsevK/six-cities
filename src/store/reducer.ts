@@ -4,10 +4,16 @@ import {DEFAULT_CITY} from '../const.ts';
 import {Offer} from '../types/offer.ts';
 import {CityName} from '../types/city-name.ts';
 
-const initialState = {
-  offers: [] as Offer[],
-  favoriteOffers: [] as Offer[],
-  currentCity: DEFAULT_CITY as CityName
+type InitialStateProp = {
+  offers: Offer[];
+  favoriteOffers: Offer[];
+  currentCity: CityName;
+}
+
+const initialState: InitialStateProp = {
+  offers: [],
+  favoriteOffers: [],
+  currentCity: DEFAULT_CITY,
 };
 
 export const reducer = createReducer(initialState, (builder) => {

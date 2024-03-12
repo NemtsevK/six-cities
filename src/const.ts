@@ -39,7 +39,7 @@ export enum Cities {
   Dusseldorf = 'Dusseldorf',
 }
 
-export const DEFAULT_CITY = Cities.Brussels;
+export const DEFAULT_CITY = Cities.Paris;
 
 export const SortingMap = {
   Popular: 'Popular',

@@ -23,6 +23,11 @@ export function Sorting({activeSorting, onSortingOptionClick}: SortingProps): JS
     onSortingOptionClick(type);
   }
 
+  const sortingEntries = Object.entries(SortingMap) as [
+    TSorting,
+    (typeof SortingMap)[TSorting]
+  ][];
+
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by </span>
@@ -46,11 +51,7 @@ export function Sorting({activeSorting, onSortingOptionClick}: SortingProps): JS
       })}
       >
         {
-          (Object.entries(SortingMap) as [
-              TSorting,
-              (typeof SortingMap)[TSorting]
-            ][]
-          ).map(([option, content]) => (
+          sortingEntries.map(([option, content]) => (
             <li
               key={option}
               className={cn('places__option', {
