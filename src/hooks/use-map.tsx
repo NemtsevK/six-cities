@@ -38,4 +38,3 @@ export function useMap({mapRef, location}: UseMapProps): Map | null {
 
   return map;
 }
-

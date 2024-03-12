@@ -1,5 +1,3 @@
-import {City} from './types/city.ts';
-
 export enum AppRoute {
   Main = '/',
   Login = '/login',
@@ -32,55 +30,22 @@ export const RATING_MAP = {
   '1': 'terrible'
 };
 
-export const CITIES: City[] = [
-  {
-    name: 'Paris',
-    location: {
-      latitude: 52.379189,
-      longitude: 4.899431,
-      zoom: 12,
-    },
-  },
-  {
-    name: 'Cologne',
-    location: {
-      latitude: 52.379189,
-      longitude: 4.899431,
-      zoom: 12,
-    },
-  },
-  {
-    name: 'Brussels',
-    location: {
-      latitude: 52.379189,
-      longitude: 4.899431,
-      zoom: 12,
-    },
-  },
-  {
-    name: 'Amsterdam',
-    location: {
-      latitude: 52.379189,
-      longitude: 4.899431,
-      zoom: 12,
-    },
-  },
-  {
-    name: 'Hamburg',
-    location: {
-      latitude: 52.379189,
-      longitude: 4.899431,
-      zoom: 12,
-    },
-  },
-  {
-    name: 'Dusseldorf',
-    location: {
-      latitude: 52.379189,
-      longitude: 4.899431,
-      zoom: 12,
-    },
-  },
-];
+export enum Cities {
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Brussels = 'Brussels',
+  Amsterdam = 'Amsterdam',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf',
+}
 
-export const DEFAULT_CITY = CITIES[3];
+export const DEFAULT_CITY = Cities.Paris;
+
+export const SortingMap = {
+  Popular: 'Popular',
+  LowToHigh: 'Price: low to high',
+  HighToLow: 'Price: high to low',
+  TopRating: 'Top rated first'
+} as const;
+
+export const DEFAULT_SORTING_OPTION = SortingMap.Popular;

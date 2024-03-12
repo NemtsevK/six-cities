@@ -1,14 +1,14 @@
-import {CITIES} from '../const.ts';
+import {cities} from './cities.ts';
 import {getRandomItem, getRandomNumber, getRandomBoolean, getRandomAvatar, getRandomHotelImage} from '../utils.ts';
 import {Offer} from '../types/offer.ts';
 
-export const offers: Offer[] = [
+export const mockOffers: Offer[] = [
   {
     id: 'of-01',
     title: 'Beautiful & luxurious studio at great location',
     type: 'apartment',
     price: getRandomNumber(50, 500),
-    city: getRandomItem(CITIES),
+    city: getRandomItem(cities),
     location: {
       latitude: 52.3909553943508,
       longitude: 4.85309666406198,
@@ -49,7 +49,7 @@ export const offers: Offer[] = [
     title: 'Cozy apartment in the heart of the city',
     type: 'apartment',
     price: getRandomNumber(50, 500),
-    city: getRandomItem(CITIES),
+    city: getRandomItem(cities),
     location: {
       latitude: 52.3609553943508,
       longitude: 4.85309666406198,
@@ -90,7 +90,7 @@ export const offers: Offer[] = [
     title: 'Spacious penthouse with stunning views',
     type: 'penthouse',
     price: getRandomNumber(50, 500),
-    city: getRandomItem(CITIES),
+    city: getRandomItem(cities),
     location: {
       latitude: 52.3909553943508,
       longitude: 4.929309666406198,
@@ -132,7 +132,7 @@ export const offers: Offer[] = [
     title: 'Charming loft with city skyline view',
     type: 'loft',
     price: getRandomNumber(50, 500),
-    city: getRandomItem(CITIES),
+    city: getRandomItem(cities),
     location: {
       latitude: 52.3909553943508,
       longitude: 4.939309666406198,
@@ -172,7 +172,7 @@ export const offers: Offer[] = [
     title: 'Modern and stylish apartment with garden',
     type: 'apartment',
     price: getRandomNumber(50, 500),
-    city: getRandomItem(CITIES),
+    city: getRandomItem(cities),
     location: {
       latitude: 52.3909553943508,
       longitude: 4.85309666406198,
@@ -213,7 +213,7 @@ export const offers: Offer[] = [
     title: 'Cozy loft with panoramic view',
     type: 'apartment',
     price: getRandomNumber(50, 500),
-    city: getRandomItem(CITIES),
+    city: getRandomItem(cities),
     location: {
       latitude: 52.3609553943508,
       longitude: 4.85309666406198,
@@ -256,7 +256,7 @@ export const offers: Offer[] = [
     title: 'Spacious penthouse with city skyline view',
     type: 'penthouse',
     price: getRandomNumber(50, 500),
-    city: getRandomItem(CITIES),
+    city: getRandomItem(cities),
     location: {
       latitude: 52.3909553943508,
       longitude: 4.929309666406198,
@@ -297,7 +297,7 @@ export const offers: Offer[] = [
     title: 'Charming cottage near the forest',
     type: 'cottage',
     price: getRandomNumber(50, 500),
-    city: getRandomItem(CITIES),
+    city: getRandomItem(cities),
     location: {
       latitude: 52.3809553943508,
       longitude: 4.939309666406198,
@@ -338,7 +338,7 @@ export const offers: Offer[] = [
     title: 'Luxury villa with private beach access',
     type: 'villa',
     price: getRandomNumber(50, 500),
-    city: getRandomItem(CITIES),
+    city: getRandomItem(cities),
     location: {
       latitude: 52.3909553943508,
       longitude: 4.85309666406198,
@@ -379,7 +379,7 @@ export const offers: Offer[] = [
     title: 'Rustic cabin in the mountains',
     type: 'cabin',
     price: getRandomNumber(50, 500),
-    city: getRandomItem(CITIES),
+    city: getRandomItem(cities),
     location: {
       latitude: 52.3609553943508,
       longitude: 4.85309666406198,

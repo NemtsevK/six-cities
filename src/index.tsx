@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {BrowserRouter} from 'react-router-dom';
 import {HelmetProvider} from 'react-helmet-async';
+import {Provider} from 'react-redux';
+import {store} from './store';
 import {App} from './components/app/app.tsx';
-import {offers} from './mocks/offers.ts';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,10 +12,12 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <HelmetProvider>
-      <BrowserRouter>
-        <App offers={offers}/>
-      </BrowserRouter>
-    </HelmetProvider>
+    <Provider store={store}>
+      <HelmetProvider>
+        <BrowserRouter>
+          <App/>
+        </BrowserRouter>
+      </HelmetProvider>
+    </Provider>
   </React.StrictMode>,
 );

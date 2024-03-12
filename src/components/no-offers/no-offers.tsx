@@ -1,7 +1,7 @@
-import {City} from '../../types/city.ts';
+import {CityName} from '../../types/city-name.ts';
 
 type NoOffersProps = {
-  currentLocation: City;
+  currentLocation: CityName;
 }
 
 export function NoOffers({currentLocation}: NoOffersProps): JSX.Element {
@@ -11,7 +11,7 @@ export function NoOffers({currentLocation}: NoOffersProps): JSX.Element {
         <section className="cities__no-places">
           <div className="cities__status-wrapper tabs__content">
             <b className="cities__status">No places to stay available</b>
-            <p className="cities__status-description">We could not find any property available at the moment in {currentLocation.name}</p>
+            <p className="cities__status-description">We could not find any property available at the moment in {currentLocation}</p>
           </div>
         </section>
         <div className="cities__right-section"></div>
