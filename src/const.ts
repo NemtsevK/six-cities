@@ -6,15 +6,18 @@ export enum AppRoute {
   NotFound = '/*',
 }
 
+export enum APIRoute {
+  Offers = '/offers',
+  Favorite = '/favorite',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
-
-export const AVATAR_URL = 'https://i.pravatar.cc/128';
-
-export const HOTEL_IMAGE_URL = 'https://loremflickr.com/260/200/hotel';
 
 export const MAX_RATING = 5;
 
@@ -39,8 +42,6 @@ export enum Cities {
   Dusseldorf = 'Dusseldorf',
 }
 
-export const DEFAULT_CITY = Cities.Paris;
-
 export const SortingMap = {
   Popular: 'Popular',
   LowToHigh: 'Price: low to high',
@@ -48,4 +49,4 @@ export const SortingMap = {
   TopRating: 'Top rated first'
 } as const;
 
-export const DEFAULT_SORTING_OPTION = SortingMap.Popular;
+export const TIMEOUT_SHOW_ERROR = 2000;

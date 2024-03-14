@@ -1,9 +1,13 @@
-import {mockOffers as offers} from '../../mocks/offers.ts';
 import {Offer} from '../../types/offer.ts';
 
 const MAX_NEAR_OFFERS = 3;
 
-export function getNearOffers(offer: Offer): Offer[] {
+type NearOffersProp = {
+  offer: Offer;
+  offers: Offer[];
+}
+
+export function getNearOffers({offer, offers}: NearOffersProp): Offer[] {
   const nearOffers: Offer[] = [];
 
   for (let i = 0; i < offers.length; i++) {
