@@ -4,7 +4,7 @@ import {Offer} from '../../../types/offer.ts';
 import {CityName} from '../../../types/city-name.ts';
 import {TSorting} from '../../../types/sorting.ts';
 import {Sorting} from '../../sorting/sorting.tsx';
-import {DEFAULT_SORTING_OPTION} from '../../../const.ts';
+import {SortingMap} from '../../../const.ts';
 import {sorting} from '../../../utils.ts';
 
 
@@ -15,7 +15,7 @@ type OfferListProps = {
 }
 
 export function MainOffersList({currentLocation, currentOffers, onCardHover}: OfferListProps): JSX.Element {
-  const [activeSorting, setActiveSorting] = useState<TSorting>(DEFAULT_SORTING_OPTION);
+  const [activeSorting, setActiveSorting] = useState<TSorting>(SortingMap.Popular);
 
   function handleSortingChange(option: TSorting) {
     setActiveSorting(option);

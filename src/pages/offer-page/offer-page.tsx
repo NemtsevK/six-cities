@@ -1,23 +1,18 @@
 import {useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
+import {useAppSelector} from '../../hooks';
 import {getRatingWidth} from '../../utils.ts';
 import {Header} from '../../components/header/header.tsx';
 import {ReviewForm} from '../../components/review-form/review-form.tsx';
 import {ReviewsList} from '../../components/reviews-list/reviews-list.tsx';
 import {NearPlaces} from '../../components/near-places/near-places.tsx';
 import {Map} from '../../components/map/map.tsx';
-import {Offer} from '../../types/offer.ts';
-import {Review} from '../../types/review.ts';
 import {NotFoundPage} from '../not-found-page/not-found-page.tsx';
 import {getNearOffers} from './utils.ts';
 
-type OfferPageProps = {
-  offers: Offer[];
-  reviews: Review[];
-}
-
-export function OfferPage({offers, reviews}: OfferPageProps): JSX.Element {
+export function OfferPage(): JSX.Element {
+  const offers = useAppSelector((state) => state.offers);
   const [chosenOffer, setChosenCard] = useState<string | null>(null);
   const {offerId} = useParams();
   const offer = offers.find((item) => item.id.toString() === offerId);
@@ -26,7 +21,7 @@ export function OfferPage({offers, reviews}: OfferPageProps): JSX.Element {
     return <NotFoundPage/>;
   }
 
-  const nearOffers = getNearOffers(offer);
+  const nearOffers = getNearOffers({offer, offers});
   const nearOffersPlusCurrent = [offer, ...nearOffers];
 
   return (
@@ -120,7 +115,7 @@ export function OfferPage({offers, reviews}: OfferPageProps): JSX.Element {
                 </div>
               </div>
               <section className="offer__reviews reviews">
-                <ReviewsList reviews={reviews}/>
+                <ReviewsList reviews={[]}/>
                 <ReviewForm/>
               </section>
             </div>

@@ -6,6 +6,10 @@ type ReviewsListProps = {
 }
 
 export function ReviewsList({reviews}: ReviewsListProps): JSX.Element {
+  if (reviews.length === 0) {
+    return <p>No comments yet.</p>;
+  }
+
   return (
     <>
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
