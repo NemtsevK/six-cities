@@ -1,6 +1,5 @@
 import {Offer} from '../../types/offer.ts';
-
-const MAX_NEAR_OFFERS = 3;
+import {MAX_NEAR_OFFERS} from '../../const.ts';
 
 type NearOffersProp = {
   offer: Offer;

@@ -1,33 +1,24 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse} from 'axios';
-import {StatusCodes} from 'http-status-codes';
 import {getToken} from './token.ts';
-import { processErrorHandle } from './process-error-handle.ts';
+import {processErrorHandle} from './process-error-handle.ts';
+import {BACKEND_URL, REQUEST_TIMEOUT, StatusCodeMapping} from './const.ts';
 
 type DetailMessageType = {
   type: string;
   message: string;
 };
 
-const StatusCodeMapping: Record<number, boolean> = {
-  [StatusCodes.BAD_REQUEST]: true,
-  [StatusCodes.UNAUTHORIZED]: true,
-  [StatusCodes.NOT_FOUND]: true,
-};
-
 const shouldDisplayError = (response: AxiosResponse) => StatusCodeMapping[response.status];
 
-const BACKEND_URL = 'https://15.design.htmlacademy.pro/six-cities';
-const REQUEST_TIMEOUT = 5000;
+interface InternalAxiosRequestConfig extends AxiosRequestConfig {
+  headers: AxiosRequestHeaders;
+}
 
 export const createAPI = (): AxiosInstance => {
   const api = axios.create({
     baseURL: BACKEND_URL,
     timeout: REQUEST_TIMEOUT,
   });
-
-  interface InternalAxiosRequestConfig extends AxiosRequestConfig {
-    headers: AxiosRequestHeaders;
-  }
 
   api.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
