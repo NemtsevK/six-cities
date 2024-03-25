@@ -2,17 +2,17 @@ import {Logo} from '../logo/logo.tsx';
 import {Nav} from '../nav/nav.tsx';
 
 type HeaderProps = {
-  isActive: boolean;
+  isActiveLogo: boolean;
   isNav: boolean;
 }
 
-export function Header({isActive, isNav}: HeaderProps) {
+export function Header({isActiveLogo, isNav}: HeaderProps) {
   return (
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Logo isActive={isActive}/>
+            <Logo isActive={isActiveLogo}/>
           </div>
           {isNav ? <Nav/> : ''}
         </div>

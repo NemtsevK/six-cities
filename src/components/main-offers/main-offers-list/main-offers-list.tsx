@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {OfferCard} from '../../offer-card/offer-card.tsx';
-import {Offer} from '../../../types/offer.ts';
+import {Offer, Offers} from '../../../types/offer.ts';
 import {CityName} from '../../../types/city-name.ts';
 import {TSorting} from '../../../types/sorting.ts';
 import {Sorting} from '../../sorting/sorting.tsx';
@@ -10,7 +10,7 @@ import {sorting} from '../../../utils.ts';
 
 type OfferListProps = {
   currentLocation: CityName;
-  currentOffers: Offer[];
+  currentOffers: Offers;
   onCardHover: (offerId: Offer['id'] | null) => void;
 }
 

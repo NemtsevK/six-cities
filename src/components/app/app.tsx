@@ -26,32 +26,18 @@ export function App(): JSX.Element {
   return (
     <HistoryRouter history={browserHistory}>
       <Routes>
-        <Route
-          path={AppRoute.Main}
-          element={<MainPage/>}
-        />
+        <Route index element={<MainPage/>}/>
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute
-              authorizationStatus={authorizationStatus}
-            >
+            <PrivateRoute authorizationStatus={authorizationStatus}>
               <FavoritesPage/>
             </PrivateRoute>
           }
         />
-        <Route
-          path={`${AppRoute.Offer}/:offerId`}
-          element={<OfferPage/>}
-        />
-        <Route
-          path={AppRoute.Login}
-          element={<LoginPage/>}
-        />
-        <Route
-          path="*"
-          element={<NotFoundPage/>}
-        />
+        <Route path={`${AppRoute.Offer}/:offerId`} element={<OfferPage/>}/>
+        <Route path={AppRoute.Login} element={<LoginPage/>}/>
+        <Route path={AppRoute.NotFound} element={<NotFoundPage/>}/>
       </Routes>
     </HistoryRouter>
   );
