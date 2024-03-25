@@ -49,6 +49,4 @@ export const SortingMap = {
   TopRating: 'Top rated first'
 } as const;
 
-export const TIMEOUT_SHOW_ERROR = 2000;
-
 export const MAX_NEAR_OFFERS = 3;
