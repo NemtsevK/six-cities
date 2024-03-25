@@ -2,12 +2,12 @@ import {useRef, useEffect} from 'react';
 import leaflet, {LayerGroup} from 'leaflet';
 import {useMap} from '../../hooks/use-map.tsx';
 import {City} from '../../types/city.ts';
-import {Offer} from '../../types/offer.ts';
+import {Offer, Offers} from '../../types/offer.ts';
 import {DEFAULT_ICON, ACTIVE_ICON} from './const';
 
 type MapProps = {
   city: City;
-  offers: Offer[];
+  offers: Offers;
   activeOfferId?: Offer['id'] | null;
   className?: string;
 }

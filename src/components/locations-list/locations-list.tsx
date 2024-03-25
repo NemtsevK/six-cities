@@ -2,11 +2,11 @@ import React from 'react';
 import cn from 'classnames';
 import {Cities} from '../../const';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {setCurrentCity} from '../../store/action';
+import {setCurrentCity} from '../../store/action.ts';
 import {CityName} from '../../types/city-name';
 
 export function LocationsList(): JSX.Element {
-  const currentCity = useAppSelector((state) => state.currentCity);
+  const currentCity = useAppSelector((state) => state.city);
   const dispatch = useAppDispatch();
   const cities = Object.values(Cities);
 

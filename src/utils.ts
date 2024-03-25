@@ -1,4 +1,4 @@
-import {Offer} from './types/offer.ts';
+import {Offer, Offers} from './types/offer.ts';
 import {MAX_RATING} from './const.ts';
 
 export const getRatingWidth = (rating: number) => `${Math.round(rating / MAX_RATING) * 100}%`;
@@ -10,8 +10,8 @@ const sortFromLowToHigh = (itemA: Offer, itemB: Offer) => itemA.price - itemB.pr
 const sortFromHighToLow = (itemA: Offer, itemB: Offer) => itemB.price - itemA.price;
 
 export const sorting = {
-  Popular: (offers: Offer[]) => offers.slice(),
-  HighToLow: (offers: Offer[]) => offers.toSorted(sortFromHighToLow),
-  LowToHigh: (offers: Offer[]) => offers.toSorted(sortFromLowToHigh),
-  TopRating: (offers: Offer[]) => offers.toSorted(sortByRating),
+  Popular: (offers: Offers) => offers.slice(),
+  HighToLow: (offers: Offers) => offers.toSorted(sortFromHighToLow),
+  LowToHigh: (offers: Offers) => offers.toSorted(sortFromLowToHigh),
+  TopRating: (offers: Offers) => offers.toSorted(sortByRating),
 };

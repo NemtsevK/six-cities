@@ -6,10 +6,11 @@ import {getRatingWidth} from '../../utils.ts';
 import {Header} from '../../components/header/header.tsx';
 import {ReviewForm} from '../../components/review-form/review-form.tsx';
 import {ReviewsList} from '../../components/reviews-list/reviews-list.tsx';
-import {NearPlaces} from '../../components/near-places/near-places.tsx';
+import {NearbyPlaces} from '../../components/nearby-places/nearby-places.tsx';
 import {Map} from '../../components/map/map.tsx';
+import {BookmarkButton} from '../../components/bookmark-button/bookmark-button';
 import {NotFoundPage} from '../not-found-page/not-found-page.tsx';
-import {getNearOffers} from './utils.ts';
+import {getNearbyOffers} from './utils.ts';
 
 export function OfferPage(): JSX.Element {
   const offers = useAppSelector((state) => state.offers);
@@ -21,15 +22,15 @@ export function OfferPage(): JSX.Element {
     return <NotFoundPage/>;
   }
 
-  const nearOffers = getNearOffers({offer, offers});
-  const nearOffersPlusCurrent = [offer, ...nearOffers];
+  const nearbyOffers = getNearbyOffers({offer, offers});
+  const nearbyOffersPlusCurrent = [offer, ...nearbyOffers];
 
   return (
     <div className="page">
       <Helmet>
         <title>6 cities. Offer</title>
       </Helmet>
-      <Header isActive={false} isNav/>
+      <Header isActiveLogo={false} isNav/>
       <main className="page__main page__main--offer">
         <section className="offer">
           <div className="offer__gallery-container container">
@@ -56,12 +57,13 @@ export function OfferPage(): JSX.Element {
                 <h1 className="offer__name">
                   {offer.title}
                 </h1>
-                <button className="offer__bookmark-button button" type="button">
-                  <svg className="offer__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <BookmarkButton
+                  id={offerId}
+                  isFavorite={false}
+                  width={'31'}
+                  height={'33'}
+                  isOfferScreen
+                />
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
@@ -122,12 +124,12 @@ export function OfferPage(): JSX.Element {
           </div>
           <Map
             city={offer.city}
-            offers={nearOffersPlusCurrent}
+            offers={nearbyOffersPlusCurrent}
             activeOfferId={chosenOffer}
             className='offer__map'
           />
         </section>
-        <NearPlaces nearPlaces={nearOffers} setChosenCard={setChosenCard}/>
+        <NearbyPlaces nearbyPlaces={nearbyOffers} setChosenCard={setChosenCard}/>
       </main>
     </div>
   );

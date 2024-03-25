@@ -1,23 +1,23 @@
-import {Offer} from '../../types/offer.ts';
+import {Offer, Offers} from '../../types/offer.ts';
 import {MAX_NEAR_OFFERS} from '../../const.ts';
 
-type NearOffersProp = {
+type NearbyOffersProp = {
   offer: Offer;
-  offers: Offer[];
+  offers: Offers;
 }
 
-export function getNearOffers({offer, offers}: NearOffersProp): Offer[] {
-  const nearOffers: Offer[] = [];
+export function getNearbyOffers({offer, offers}: NearbyOffersProp): Offers {
+  const nearbyOffers: Offers = [];
 
   for (let i = 0; i < offers.length; i++) {
     if (offers[i].id !== offer.id && offers[i].city.name === offer.city.name) {
-      nearOffers.push(offers[i]);
+      nearbyOffers.push(offers[i]);
     }
 
-    if (nearOffers.length >= MAX_NEAR_OFFERS) {
+    if (nearbyOffers.length >= MAX_NEAR_OFFERS) {
       break;
     }
   }
 
-  return nearOffers;
+  return nearbyOffers;
 }

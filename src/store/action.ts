@@ -1,25 +1,28 @@
 import {createAction} from '@reduxjs/toolkit';
+import {Offer, Offers} from '../types/offer.ts';
+import {Reviews} from '../types/review.ts';
+import {AppRoute, AuthorizationStatus} from '../const.ts';
 import {CityName} from '../types/city-name.ts';
-import {Offer} from '../types/offer.ts';
-import {Review} from '../types/review.ts';
-import {AuthorizationStatus} from '../const.ts';
 
-export const setOffers = createAction('offers/change', (offers: Offer[]) => ({
-  payload: offers
-}));
+export const setCurrentCity = createAction<CityName>('offers/setCurrentCity');
 
-export const setCurrentCity = createAction('offers/setCurrentCity', (currentCityName: CityName) => ({
-  payload: currentCityName
-}));
+export const loadOffers = createAction<Offers>('data/loadOffers');
+export const setOffersDataLoadingStatus = createAction<boolean>('data/setQuestionsDataLoadingStatus');
 
-export const loadOffers = createAction<Offer[]>('data/loadOffers');
+export const loadFavoriteOffers = createAction<Offers>('data/loadFavoriteOffers');
+export const setFavoriteOffersDataLoadingStatus = createAction<boolean>('data/setFavoriteOffersDataLoadingStatus');
 
-export const loadFavoriteOffers = createAction<Offer[]>('data/loadFavoriteOffers');
+export const toggleFavoriteOffer = createAction<Offer>('app/toggleFavoriteOffer');
 
-export const loadComments = createAction<Review[]>('data/loadComments');
+export const loadOffer = createAction<Offer>('data/loadOffer');
+export const setOfferDataLoadingStatus = createAction<boolean>('data/setOfferDataLoadingStatus');
+
+export const loadComments = createAction<Reviews>('data/loadComments');
+export const setCommentsDataLoadingStatus = createAction<boolean>('data/setCommentsDataLoadingStatus');
+
+export const loadNearbyOffers = createAction<Offers>('data/loadNearbyOffers');
+export const setNearbyOffersDataLoadingStatus = createAction<boolean>('data/setNearbyOffersDataLoadingStatus');
 
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 
-export const setError = createAction<string | null>('app/setError');
-
-export const setOffersDataLoadingStatus = createAction<boolean>('data/setQuestionsDataLoadingStatus');
+export const redirectToRoute = createAction<AppRoute>('app/redirectToRoute');

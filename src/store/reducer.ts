@@ -1,54 +1,88 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {Cities, AuthorizationStatus} from '../const.ts';
-import {Offer} from '../types/offer.ts';
+import {Offer, Offers} from '../types/offer.ts';
+import {Reviews} from '../types/review.ts';
 import {CityName} from '../types/city-name.ts';
-import {Review} from '../types/review.ts';
 
 import {
-  setCurrentCity,
-  setOffers,
-  loadOffers,
-  loadFavoriteOffers,
   loadComments,
+  loadFavoriteOffers,
+  loadNearbyOffers,
+  loadOffer,
+  loadOffers,
   requireAuthorization,
+  setCurrentCity,
+  setFavoriteOffersDataLoadingStatus,
+  setOffersDataLoadingStatus,
+  setOfferDataLoadingStatus,
+  setCommentsDataLoadingStatus,
+  setNearbyOffersDataLoadingStatus,
 } from './action.ts';
 
 type InitialStateProp = {
-  offers: Offer[];
-  favoriteOffers: Offer[];
-  currentCity: CityName;
-  reviews: Review[];
+  offer: Offer;
+  offers: Offers;
+  favoriteOffers: Offers;
+  nearbyOffers: Offers;
+  city: CityName;
+  comments: Reviews;
   authorizationStatus: AuthorizationStatus;
+  isOfferDataLoading: boolean;
   isOffersDataLoading: boolean;
-  error: string | null;
+  isCommentsDataLoading: boolean;
+  isNearbyOffersDataLoading: boolean;
+  isFavoriteOffersDataLoading: boolean;
 }
 
 const initialState: InitialStateProp = {
+  offer: {} as Offer,
   offers: [],
   favoriteOffers: [],
-  currentCity: Cities.Paris,
-  reviews: [],
+  nearbyOffers: [],
+  city: Cities.Paris,
+  comments: [],
   authorizationStatus: AuthorizationStatus.Unknown,
+  isOfferDataLoading: false,
   isOffersDataLoading: false,
-  error: null,
+  isCommentsDataLoading: false,
+  isNearbyOffersDataLoading: false,
+  isFavoriteOffersDataLoading: false,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(setCurrentCity, (state, action) => {
-      state.currentCity = action.payload;
-    })
-    .addCase(setOffers, (state, action) => {
-      state.offers = action.payload;
+      state.city = action.payload;
     })
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
     })
+    .addCase(setOffersDataLoadingStatus, (state, action) => {
+      state.isOffersDataLoading = action.payload;
+    })
     .addCase(loadFavoriteOffers, (state, action) => {
       state.favoriteOffers = action.payload;
     })
+    .addCase(setFavoriteOffersDataLoadingStatus, (state, action) => {
+      state.isFavoriteOffersDataLoading = action.payload;
+    })
+    .addCase(loadOffer, (state, action) => {
+      state.offer = action.payload;
+    })
+    .addCase(setOfferDataLoadingStatus, (state, action) => {
+      state.isOfferDataLoading = action.payload;
+    })
     .addCase(loadComments, (state, action) => {
-      state.reviews = action.payload;
+      state.comments = action.payload;
+    })
+    .addCase(setCommentsDataLoadingStatus, (state, action) => {
+      state.isCommentsDataLoading = action.payload;
+    })
+    .addCase(loadNearbyOffers, (state, action) => {
+      state.nearbyOffers = action.payload;
+    })
+    .addCase(setNearbyOffersDataLoadingStatus, (state, action) => {
+      state.isNearbyOffersDataLoading = action.payload;
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;

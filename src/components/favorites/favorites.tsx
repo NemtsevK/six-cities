@@ -1,13 +1,13 @@
 import {OfferCard} from '../offer-card/offer-card.tsx';
-import {Offer} from '../../types/offer.ts';
+import {Offers} from '../../types/offer.ts';
 
 type OfferListProps = {
-  offers: Offer[];
+  offers: Offers;
 }
 
 //сгруппировать любимые предложения по городам
-function getFavoritesByLocation(items: Offer[]) {
-  return items.reduce<{ [key: string]: Offer[] }>((result, current) => {
+function getFavoritesByLocation(items: Offers) {
+  return items.reduce<{ [key: string]: Offers }>((result, current) => {
     const location = current.city.name;
     if (!(location in result)) {
       result[location] = [];

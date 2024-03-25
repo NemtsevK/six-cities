@@ -3,7 +3,7 @@ export enum AppRoute {
   Login = '/login',
   Favorites = '/favorites',
   Offer = '/offer',
-  NotFound = '/*',
+  NotFound = '*',
 }
 
 export enum APIRoute {
@@ -48,7 +48,5 @@ export const SortingMap = {
   HighToLow: 'Price: high to low',
   TopRating: 'Top rated first'
 } as const;
-
-export const TIMEOUT_SHOW_ERROR = 2000;
 
 export const MAX_NEAR_OFFERS = 3;
