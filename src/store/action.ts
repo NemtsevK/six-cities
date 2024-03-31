@@ -2,9 +2,8 @@ import {createAction} from '@reduxjs/toolkit';
 import {Offer, Offers} from '../types/offer.ts';
 import {Reviews} from '../types/review.ts';
 import {AppRoute, AuthorizationStatus} from '../const.ts';
-import {CityName} from '../types/city-name.ts';
 
-export const setCurrentCity = createAction<CityName>('offers/setCurrentCity');
+export const setCurrentCity = createAction<string>('offers/setCurrentCity');
 
 export const loadOffers = createAction<Offers>('data/loadOffers');
 export const setOffersDataLoadingStatus = createAction<boolean>('data/setQuestionsDataLoadingStatus');
@@ -26,3 +25,5 @@ export const setNearbyOffersDataLoadingStatus = createAction<boolean>('data/setN
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 
 export const redirectToRoute = createAction<AppRoute>('app/redirectToRoute');
+
+export const postComment = createAction<AppRoute>('data/postComment');

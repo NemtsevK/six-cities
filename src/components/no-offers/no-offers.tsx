@@ -1,7 +1,5 @@
-import {CityName} from '../../types/city-name.ts';
-
 type NoOffersProps = {
-  currentLocation: CityName;
+  currentLocation: string;
 }
 
 export function NoOffers({currentLocation}: NoOffersProps): JSX.Element {

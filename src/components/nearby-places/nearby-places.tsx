@@ -1,22 +1,28 @@
 import {Offers} from '../../types/offer.ts';
-import {OfferCard} from '../offer-card/offer-card.tsx';
+import {OffersList} from '../offers-list/offers-list.tsx';
 
 type NearbyPlacesProps = {
-  nearbyPlaces: Offers;
-  setChosenCard: (id: string | null) => void;
+  slicedNearbyOffers: Offers;
 }
 
-export function NearbyPlaces({nearbyPlaces, setChosenCard}: NearbyPlacesProps): JSX.Element {
-  return (
-    <div className="container">
+export function NearbyPlaces({slicedNearbyOffers}: NearbyPlacesProps): JSX.Element {
+  if (slicedNearbyOffers.length === 0) {
+    return (
       <section className="near-places places">
-        <h2 className="near-places__title">Other places in the neighbourhood</h2>
-        <div className="near-places__list places__list">
-          {nearbyPlaces.map((place) => (
-            <OfferCard key={place.id} block="near-places" offer={place} onCardHover={() => setChosenCard(place.id)}/>
-          ))}
-        </div>
+        <h2 className="near-places__title">
+          Other places in the neighborhood not found, sorry
+        </h2>
       </section>
-    </div>
+    );
+  }
+
+  return (
+    <section className="near-places places">
+      <h2 className="near-places__title">Other places in the neighbourhood</h2>
+      <OffersList
+        offers={slicedNearbyOffers}
+        className="near-places__list places__list"
+      />
+    </section>
   );
 }

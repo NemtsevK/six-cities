@@ -6,7 +6,7 @@ import {AuthData} from '../types/auth-data.ts';
 import {Offer, Offers} from '../types/offer.ts';
 import {AppDispatch, State} from '../types/state';
 import {User} from '../types/user.ts';
-import {Review, Reviews} from '../types/review.ts';
+import {CommentData, Reviews} from '../types/review.ts';
 
 import {
   loadComments,
@@ -172,7 +172,7 @@ export const toggleFavoriteAction = createAsyncThunk<
 
 export const postCommentAction = createAsyncThunk<
   void,
-  Review,
+  CommentData,
   {
     dispatch: AppDispatch;
     state: State;
@@ -186,7 +186,7 @@ export const postCommentAction = createAsyncThunk<
 });
 
 export const postCommentAndUpdateOffersAction =
-  (comment: Review) => async (dispatch: AppDispatch) => {
+  (comment: CommentData) => async (dispatch: AppDispatch) => {
     await dispatch(postCommentAction(comment));
     await dispatch(fetchCommentsAction(comment.id));
   };

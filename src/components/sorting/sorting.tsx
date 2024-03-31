@@ -1,70 +1,42 @@
 import {useState} from 'react';
-import cn from 'classnames';
 import {SortingMap} from '../../const.ts';
-import {TSorting} from '../../types/sorting.ts';
 
 type SortingProps = {
-  activeSorting: TSorting;
-  onSortingOptionClick: (type: TSorting) => void;
+  handleSort: (sortOption: SortingMap) => void;
+  sortingOptionsVisible: boolean;
+  setSortingOptionsVisible: (visible: boolean) => void;
 }
 
-export function Sorting({activeSorting, onSortingOptionClick}: SortingProps): JSX.Element {
-  const [isOpened, setIsOpened] = useState(false);
-  const arrowStyle = {
-    transform: `translateY(-50%) ${isOpened ? 'rotate(180deg)' : ''}`
+export function Sorting({handleSort, sortingOptionsVisible, setSortingOptionsVisible,}: SortingProps): JSX.Element {
+  const [selectedSortOption, setSelectedSortOption] = useState<SortingMap>(
+    SortingMap.Popular
+  );
+
+  const sortingOptionList = Array.from(Object.values(SortingMap));
+
+  const handleOptionClick = (option: SortingMap) => {
+    setSelectedSortOption(option);
+    handleSort(option);
+    setSortingOptionsVisible(false);
   };
 
-  function handleTypeClick() {
-    setIsOpened((prevState) => !prevState);
-  }
-
-  function handleSortingOptionClick(type: TSorting) {
-    setIsOpened(false);
-    onSortingOptionClick(type);
-  }
-
-  const sortingEntries = Object.entries(SortingMap) as [
-    TSorting,
-    (typeof SortingMap)[TSorting]
-  ][];
+  const isVisible = sortingOptionsVisible ? '--opened' : '--closed';
 
   return (
-    <form className="places__sorting" action="#" method="get">
-      <span className="places__sorting-caption">Sort by </span>
-      <span
-        className="places__sorting-type"
-        tabIndex={0}
-        onClick={handleTypeClick}
-      >
-        {SortingMap[activeSorting]}
-        <svg
-          className="places__sorting-arrow"
-          width="7"
-          height="4"
-          style={arrowStyle}
+    <ul
+      className={`places__options places__options--custom places__options${isVisible}`}
+    >
+      {sortingOptionList.map((option) => (
+        <li
+          key={option}
+          className={`places__option ${
+            selectedSortOption !== option ? '' : 'places__option--active'
+          }`}
+          onClick={() => handleOptionClick(option)}
         >
-          <use xlinkHref="#icon-arrow-select"></use>
-        </svg>
-      </span>
-      <ul className={cn('places__options', 'places__options--custom', {
-        'places__options--opened': isOpened,
-      })}
-      >
-        {
-          sortingEntries.map(([option, content]) => (
-            <li
-              key={option}
-              className={cn('places__option', {
-                'places__option--active': activeSorting === option,
-              })}
-              tabIndex={0}
-              onClick={() => handleSortingOptionClick(option)}
-            >
-              {content}
-            </li>
-          ))
-        }
-      </ul>
-    </form>
+          {option}
+        </li>
+      ))}
+    </ul>
   );
 }

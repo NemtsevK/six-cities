@@ -1,18 +1,16 @@
-import {User} from '../../../types/user.ts';
+import dayjs from 'dayjs';
 import {getRatingWidth} from '../../../utils.ts';
+import {Review} from '../../../types/review.ts';
 
 type ReviewItemProps = {
-  rating: number;
-  user: User;
-  comment: string;
-  date: string;
+  review: Review;
 }
 
-export function ReviewsItem({rating, user, comment, date}: ReviewItemProps): JSX.Element {
-  const commentDate = new Date(date);
-  const month = commentDate.toLocaleString('en-US', {month: 'long'});
-  const year = commentDate.getFullYear();
-  const dateTime = commentDate.toDateString();
+export function ReviewsItem({review}: ReviewItemProps): JSX.Element {
+  const {user, rating, comment, date} = review;
+  const reviewDate = dayjs(date);
+  const formattedDate = reviewDate.format('MMMM YYYY');
+  const formattedDateTime = reviewDate.format('YYYY-MM-DD');
 
   return (
     <li className="reviews__item">
@@ -30,7 +28,9 @@ export function ReviewsItem({rating, user, comment, date}: ReviewItemProps): JSX
           </div>
         </div>
         <p className="reviews__text">{comment}</p>
-        <time className="reviews__time" dateTime={dateTime}>{month}{' '}{year}</time>
+        <time className="reviews__time" dateTime={formattedDateTime}>
+          {formattedDate}
+        </time>
       </div>
     </li>
   );

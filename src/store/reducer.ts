@@ -1,8 +1,7 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {Cities, AuthorizationStatus} from '../const.ts';
+import {AuthorizationStatus, cities} from '../const.ts';
 import {Offer, Offers} from '../types/offer.ts';
 import {Reviews} from '../types/review.ts';
-import {CityName} from '../types/city-name.ts';
 
 import {
   loadComments,
@@ -24,7 +23,7 @@ type InitialStateProp = {
   offers: Offers;
   favoriteOffers: Offers;
   nearbyOffers: Offers;
-  city: CityName;
+  city: string;
   comments: Reviews;
   authorizationStatus: AuthorizationStatus;
   isOfferDataLoading: boolean;
@@ -39,7 +38,7 @@ const initialState: InitialStateProp = {
   offers: [],
   favoriteOffers: [],
   nearbyOffers: [],
-  city: Cities.Paris,
+  city: cities.PARIS,
   comments: [],
   authorizationStatus: AuthorizationStatus.Unknown,
   isOfferDataLoading: false,
