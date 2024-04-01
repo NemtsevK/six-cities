@@ -1,4 +1,5 @@
 import {OfferCard} from '../offer-card/offer-card.tsx';
+import {LocationsItem} from '../locations-items/locations-items.tsx';
 import {Offers} from '../../types/offer.ts';
 
 type OfferListProps = {
@@ -25,21 +26,15 @@ export function Favorites({offers}: OfferListProps): JSX.Element {
   return (
     <ul className="favorites__list">
       {Object.entries(favoritesByLocation).map(
-        ([location, groupedFavorites]) => (
-          <li className="favorites__locations-items" key={location}>
-            <div className="favorites__locations locations locations--current">
-              <div className="locations__item">
-                <a className="locations__item-link" href="#">
-                  <span>{location}</span>
-                </a>
-              </div>
-            </div>
+        ([city, groupedFavorites]) => (
+          <li className="favorites__locations-items" key={city}>
+            <LocationsItem city={city} />
             <div className="favorites__places">
               {groupedFavorites.map((offer) => (
                 <OfferCard
                   key={offer.id}
                   offer={offer}
-                  block="favorites"
+                  isFavoriteItem
                   size="small"
                 />
               ))}

@@ -1,3 +1,4 @@
+import {v4 as uuidv4} from 'uuid';
 import {Review, Reviews} from '../../types/review.ts';
 import {ReviewsItem} from './reviews-item/reviews-item.tsx';
 
@@ -11,11 +12,10 @@ export function ReviewsList({reviews}: ReviewsListProps): JSX.Element {
   }
 
   return (
-    <>
-      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
-      <ul className="reviews__list">
-        {reviews.map((item: Review) => <ReviewsItem key={item.id} {...item}/>)}
-      </ul>
-    </>
+    <ul className="reviews__list">
+      {reviews.map((review: Review) => (
+        <ReviewsItem key={uuidv4()} review={review}/>
+      ))}
+    </ul>
   );
 }

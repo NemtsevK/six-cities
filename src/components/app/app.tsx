@@ -35,7 +35,7 @@ export function App(): JSX.Element {
             </PrivateRoute>
           }
         />
-        <Route path={`${AppRoute.Offer}/:offerId`} element={<OfferPage/>}/>
+        <Route path={`${AppRoute.Offer}/:id`} element={<OfferPage/>}/>
         <Route path={AppRoute.Login} element={<LoginPage/>}/>
         <Route path={AppRoute.NotFound} element={<NotFoundPage/>}/>
       </Routes>

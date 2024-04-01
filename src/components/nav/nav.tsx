@@ -8,6 +8,7 @@ export function Nav(): JSX.Element {
   const authorizationStatus = useAppSelector(
     (state) => state.authorizationStatus
   );
+  const favoriteOffersCount = useAppSelector((state) => state.favoriteOffers.length);
 
   const renderAuthLinks = () => {
     if (authorizationStatus === AuthorizationStatus.Auth) {
@@ -21,7 +22,9 @@ export function Nav(): JSX.Element {
               <div className="header__avatar-wrapper user__avatar-wrapper">
               </div>
               <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-              <span className="header__favorite-count">3</span>
+              <span className="header__favorite-count">
+                {favoriteOffersCount}
+              </span>
             </Link>
           </li>
           <li className="header__nav-item">

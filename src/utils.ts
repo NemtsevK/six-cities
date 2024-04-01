@@ -1,17 +1,37 @@
 import {Offer, Offers} from './types/offer.ts';
-import {MAX_RATING} from './const.ts';
+import {MAX_RATING, SortingMap} from './const.ts';
 
 export const getRatingWidth = (rating: number) => `${Math.round(rating / MAX_RATING) * 100}%`;
 
 const sortByRating = (itemA: Offer, itemB: Offer) => itemB.rating - itemA.rating;
 
-const sortFromLowToHigh = (itemA: Offer, itemB: Offer) => itemA.price - itemB.price;
+const sortLowToHighPrice = (itemA: Offer, itemB: Offer) => itemA.price - itemB.price;
 
-const sortFromHighToLow = (itemA: Offer, itemB: Offer) => itemB.price - itemA.price;
+const sortHighToLowPrice = (itemA: Offer, itemB: Offer) => itemB.price - itemA.price;
 
-export const sorting = {
-  Popular: (offers: Offers) => offers.slice(),
-  HighToLow: (offers: Offers) => offers.toSorted(sortFromHighToLow),
-  LowToHigh: (offers: Offers) => offers.toSorted(sortFromLowToHigh),
-  TopRating: (offers: Offers) => offers.toSorted(sortByRating),
-};
+export function sortingOffers(sortOption: string, offers: Offers) {
+  switch (sortOption) {
+    case SortingMap.Popular:
+      break;
+    case SortingMap.LowToHighPrice:
+      offers.sort(sortLowToHighPrice);
+      break;
+    case SortingMap.TopRatedFirst:
+      offers.sort(sortByRating);
+      break;
+    case SortingMap.HighToLowPrice:
+      offers.sort(sortHighToLowPrice);
+      break;
+    default:
+      break;
+  }
+
+  return offers;
+}
+
+export const filterOffersByCityName = (
+  cityOffers: Offers,
+  cityName: string,
+): Offers => cityOffers.filter((offer) => offer.city.name === cityName);
+
+export const pluralize = (count: number): string => count > 1 ? 's' : '';
