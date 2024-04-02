@@ -3,20 +3,30 @@ import {useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 import {v4 as uuidv4} from 'uuid';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {getRatingWidth} from '../../utils.ts';
+import {
+  getComments,
+  getErrorOfferLoadingStatus,
+  getNearbyOffers,
+  getOffer,
+  getOfferDataLoadingStatus,
+  getOffers,
+} from '../../store/app-data/app-data.selectors';
 import {Header} from '../../components/header/header.tsx';
-import {ReviewForm} from '../../components/review-form/review-form.tsx';
-import {ReviewsList} from '../../components/reviews-list/reviews-list.tsx';
-import {NearbyPlaces} from '../../components/nearby-places/nearby-places.tsx';
+import {NearbyPlaces} from '../../components/offer-components/nearby-places/nearby-places.tsx';
 import {Map} from '../../components/map/map.tsx';
 import {BookmarkButton} from '../../components/bookmark-button/bookmark-button';
-import {Spinner} from '../../components/spinner/spinner.tsx';
-import {OfferHost} from '../../components/offer-host/offer-host.tsx';
+import {LoadingPage} from '../loading-page/loading-page.tsx';
+import {OfferHost} from '../../components/offer-components/offer-host/offer-host.tsx';
+import {OfferFeatures} from '../../components/offer-components/offer-features/offer-features.tsx';
+import {OfferInside} from '../../components/offer-components/offer-inside/offer-inside.tsx';
+import {OfferPrice} from '../../components/offer-components/offer-price/offer-price.tsx';
+import {OfferRating} from '../../components/offer-components/offer-rating/offer-rating.tsx';
+import {OfferReviews} from '../../components/offer-components/offer-reviews/offer-reviews';
 import {NotFoundPage} from '../not-found-page/not-found-page.tsx';
-import {Reviews} from '../../types/review.ts';
-import {Offers} from '../../types/offer.ts';
-import {City} from '../../types/city.ts';
-import {cityCoordinates, MAX_OFFER_SCREEN_NEARBY_OFFERS_COUNT} from '../../const.ts';
+import {TReviews} from '../../types/review.ts';
+import {TOffer, TOffers} from '../../types/offer.ts';
+// import {TCity} from '../../types/city.ts';
+import {cityCoordinates, MAX_OFFER_SCREEN_NEARBY_OFFERS_COUNT, MAX_IMAGES} from '../../const.ts';
 import {
   fetchCommentsAction,
   fetchNearbyOffersAction,
@@ -25,32 +35,18 @@ import {
 
 export function OfferPage(): JSX.Element {
   const dispatch = useAppDispatch();
-  const offers = useAppSelector((state) => state.offers);
+  const {id} = useParams<{ id: string | undefined }>();
 
-  const {id} = useParams();
-  const offer = offers.find((item) => item.id.toString() === id);
+  const offers = useAppSelector(getOffers);
+  const nearbyOffers = useAppSelector<TOffers>(getNearbyOffers);
+  const hasError = useAppSelector(getErrorOfferLoadingStatus);
 
-  const idExists = offers.some((item) => item.id === id);
-  const comments = useAppSelector<Reviews>((state) => state.comments);
-  const nearbyOffers = useAppSelector<Offers>((state) => state.nearbyOffers);
+  const offer = useAppSelector<TOffer>(getOffer);
+  const isOfferDataLoading = useAppSelector(getOfferDataLoadingStatus);
 
-  const sortedComments = comments
-    .slice()
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const reviews = useAppSelector<TReviews>(getComments);
 
-  const authorizationStatus = useAppSelector(
-    (state) => state.authorizationStatus
-  );
-
-  const isOfferLoading = useAppSelector((state) => state.isOfferDataLoading);
-  const isCommentsLoading = useAppSelector(
-    (state) => state.isCommentsDataLoading
-  );
-  const isNearbyOffersLoading = useAppSelector(
-    (state) => state.isNearbyOffersDataLoading
-  );
-
-  const selectedCity: City | undefined = offers.find((offerItem) => offerItem.id === id)?.city;
+  const selectedCity = offers.find((offerItem) => offerItem.id === id)?.city;
 
   const activeCityCoordinates = cityCoordinates.find(
     (city) => city.name.toLowerCase() === selectedCity?.name.toLowerCase()
@@ -64,14 +60,11 @@ export function OfferPage(): JSX.Element {
     }
   }, [id, dispatch]);
 
-  if (!idExists) {
-    return <NotFoundPage/>;
+  if (isOfferDataLoading) {
+    return <LoadingPage/>;
   }
 
-  if (!offer) {
-    if (isOfferLoading || isCommentsLoading || isNearbyOffersLoading) {
-      return <Spinner/>;
-    }
+  if (hasError) {
     return <NotFoundPage/>;
   }
 
@@ -99,12 +92,12 @@ export function OfferPage(): JSX.Element {
       <Helmet>
         <title>6 cities. Offer</title>
       </Helmet>
-      <Header isActiveLogo={false} isNav/>
+      <Header/>
       <main className="page__main page__main--offer">
         <section className="offer">
           <div className="offer__gallery-container container">
             <div className="offer__gallery">
-              {images?.map((image) => (
+              {images?.slice(0, MAX_IMAGES).map((image) => (
                 <div className="offer__image-wrapper" key={uuidv4()}>
                   <img className="offer__image" src={image} alt="Offer"/>
                 </div>
@@ -130,51 +123,20 @@ export function OfferPage(): JSX.Element {
                   isOfferScreen
                 />
               </div>
-              <div className="offer__rating rating">
-                <div className="offer__stars rating__stars">
-                  <span style={{width: getRatingWidth(rating)}}></span>
-                  <span className="visually-hidden">Rating</span>
-                </div>
-                <span className="offer__rating-value rating__value">4.8</span>
-              </div>
-              <ul className="offer__features">
-                <li className="offer__feature offer__feature--entire">
-                  {type}
-                </li>
-                <li className="offer__feature offer__feature--bedrooms">
-                  {bedrooms} Bedroom
-                </li>
-                <li className="offer__feature offer__feature--adults">
-                  Max {maxAdults} adult
-                </li>
-              </ul>
-              <div className="offer__price">
-                <b className="offer__price-value">&euro;{price}</b>
-                <span className="offer__price-text">&nbsp;night</span>
-              </div>
-              <div className="offer__inside">
-                <h2 className="offer__inside-title">What&apos;s inside</h2>
-                <ul className="offer__inside-list">
-                  {goods?.map((good) => (
-                    <li className="offer__inside-item" key={uuidv4()}>
-                      {good}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <OfferRating rating={rating}/>
+              <OfferFeatures
+                type={type}
+                bedrooms={bedrooms}
+                maxAdults={maxAdults}
+              />
+              <OfferPrice price={price}/>
+              <OfferInside goods={goods}/>
               <OfferHost
                 isAvatarPro={isAvatarPro}
                 host={host}
                 description={description}
               />
-              <section className="offer__reviews reviews">
-                <h2 className="reviews__title">
-                  Reviews &middot;{' '}
-                  <span className="reviews__amount">{comments.length}</span>
-                </h2>
-                <ReviewsList reviews={sortedComments.slice(0, 10)}/>
-                {String(authorizationStatus) === 'AUTH' && <ReviewForm/>}
-              </section>
+              <OfferReviews reviews={reviews}/>
             </div>
           </div>
           {activeCityCoordinates && offer && (

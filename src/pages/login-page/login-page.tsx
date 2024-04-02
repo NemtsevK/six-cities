@@ -1,8 +1,8 @@
 import {FormEvent, useRef} from 'react';
 import {Helmet} from 'react-helmet-async';
 import {Link} from 'react-router-dom';
-import {AppRoute, cities} from '../../const.ts';
-import {Header} from '../../components/header/header.tsx';
+import {AppRoute, Cities} from '../../const.ts';
+import {Logo} from '../../components/logo/logo.tsx';
 import {useAppDispatch} from '../../hooks';
 import {loginAction} from '../../store/api-actions.ts';
 
@@ -31,7 +31,15 @@ export function LoginPage(): JSX.Element {
       <Helmet>
         <title>6 cities. Sign in</title>
       </Helmet>
-      <Header isActiveLogo={false} isNav={false}/>
+      <header className="header">
+        <div className="container">
+          <div className="header__wrapper">
+            <div className="header__left">
+              <Logo/>
+            </div>
+          </div>
+        </div>
+      </header>
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">
@@ -51,7 +59,7 @@ export function LoginPage(): JSX.Element {
           <section className="locations locations--login locations--current">
             <div className="locations__item">
               <Link className="locations__item-link" to={AppRoute.Main}>
-                <span>{cities.AMSTERDAM}</span>
+                <span>{Cities.Amsterdam}</span>
               </Link>
             </div>
           </section>

@@ -1,13 +1,13 @@
-import {Offer, Offers} from '../../types/offer.ts';
+import {TOffer, TOffers} from '../../types/offer.ts';
 import {MAX_NEAR_OFFERS} from '../../const.ts';
 
 type NearbyOffersProp = {
-  offer: Offer;
-  offers: Offers;
+  offer: TOffer;
+  offers: TOffers;
 }
 
-export function getNearbyOffers({offer, offers}: NearbyOffersProp): Offers {
-  const nearbyOffers: Offers = [];
+export function getNearbyOffers({offer, offers}: NearbyOffersProp): TOffers {
+  const nearbyOffers: TOffers = [];
 
   for (let i = 0; i < offers.length; i++) {
     if (offers[i].id !== offer.id && offers[i].city.name === offer.city.name) {

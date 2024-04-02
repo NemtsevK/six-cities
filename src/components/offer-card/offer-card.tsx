@@ -1,13 +1,13 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const.ts';
-import {Offer} from '../../types/offer.ts';
+import {TOffer} from '../../types/offer.ts';
 import {getRatingWidth} from '../../utils.ts';
 import {BookmarkButton} from '../bookmark-button/bookmark-button.tsx';
 
 type Size = 'small' | 'large';
 
 type OfferCardProps = {
-  offer: Offer;
+  offer: TOffer;
   isActive?: boolean;
   onOfferHover?: (offerId: string) => void;
   isFavoriteItem?: boolean;

@@ -1,20 +1,81 @@
+import {useEffect} from 'react';
+import {Link} from 'react-router-dom';
+import {AppRoute, AuthorizationStatus} from '../../const';
+import {fetchFavoriteOffersAction, logoutAction} from '../../store/api-actions.ts';
+import {getFavoriteOffers} from '../../store/app-data/app-data.selectors.ts';
+import {getAuthorizationStatus} from '../../store/user-process/user-process.selectors.ts';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {Logo} from '../logo/logo.tsx';
-import {Nav} from '../nav/nav.tsx';
 
-type HeaderProps = {
-  isActiveLogo: boolean;
-  isNav: boolean;
-}
+export function Header() {
+  const dispatch = useAppDispatch();
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const favoriteOffers = useAppSelector(getFavoriteOffers);
+  const favoriteOffersCount = favoriteOffers.length;
 
-export function Header({isActiveLogo, isNav}: HeaderProps) {
+  useEffect(() => {
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavoriteOffersAction());
+    }
+  }, [dispatch, authorizationStatus]);
+
+  const renderAuthLinks = () => {
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      return (
+        <>
+          <div className="header__nav-item user">
+            <Link
+              to={AppRoute.Favorites}
+              className="header__nav-link header__nav-link--profile"
+            >
+              <div className="header__avatar-wrapper user__avatar-wrapper"></div>
+              <span className="header__user-name user__name">
+                Oliver.conner@gmail.com
+              </span>
+              <span className="header__favorite-count">
+                {favoriteOffersCount}
+              </span>
+            </Link>
+          </div>
+          <li className="header__nav-item">
+            <Link
+              className="header__nav-link"
+              to={AppRoute.Main}
+              onClick={(event) => {
+                event.preventDefault();
+                dispatch(logoutAction());
+              }}
+            >
+              <span className="header__signout">Sign out</span>
+            </Link>
+          </li>
+        </>
+      );
+    } else {
+      return (
+        <li className="header__nav-item user">
+          <Link
+            className="header__nav-link header__nav-link--profile"
+            to={AppRoute.Login}
+          >
+            <div className="header__avatar-wrapper user__avatar-wrapper"></div>
+            <span className="header__login">Sign in</span>
+          </Link>
+        </li>
+      );
+    }
+  };
+
   return (
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Logo isActive={isActiveLogo}/>
+            <Logo/>
           </div>
-          {isNav ? <Nav/> : ''}
+          <nav className="header__nav">
+            <ul className="header__nav-list">{renderAuthLinks()}</ul>
+          </nav>
         </div>
       </div>
     </header>

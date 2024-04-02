@@ -1,8 +1,8 @@
-import {OfferCard} from '../offer-card/offer-card';
-import {Offers} from '../../types/offer.ts';
+import {OfferCard} from '../offer-card/offer-card.tsx';
+import {TOffers} from '../../types/offer.ts';
 
 type OffersListProps = {
-  offers: Offers;
+  offers: TOffers;
   className?: string;
   isActive?: boolean;
   onOfferHover?: (offerId: string) => void;

@@ -9,3 +9,5 @@ export const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.UNAUTHORIZED]: true,
   [StatusCodes.NOT_FOUND]: true,
 };
+
+export const AUTH_TOKEN_KEY_NAME = 'six-cities-token';
