@@ -8,7 +8,7 @@ export type TReview = {
   rating: number;
 };
 
-export type TCommentData = {
+export type TReviewData = {
   id: string;
   comment: string;
   rating: number;

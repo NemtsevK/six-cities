@@ -5,8 +5,8 @@ import {fetchFavoriteOffersAction} from '../../store/api-actions.ts';
 import { getFavoriteOffers } from '../../store/app-data/app-data.selectors.ts';
 import {Header} from '../../components/header/header.tsx';
 import {Footer} from '../../components/footer/footer.tsx';
-import {FavoritesMain} from '../../components/favorites-main/favorites-main.tsx';
-import {FavoritesEmpty} from '../../components/favorites-empty/favorites-empty.tsx';
+import {FavoritesMain} from '../../components/favorites/favorites-main/favorites-main.tsx';
+import {FavoritesEmpty} from '../../components/favorites/favorites-empty/favorites-empty.tsx';
 
 export function FavoritesPage(): JSX.Element {
   const dispatch = useAppDispatch();

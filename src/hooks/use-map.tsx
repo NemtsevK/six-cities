@@ -1,15 +1,17 @@
-import {useEffect, useState, useRef, MutableRefObject} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import leaflet, {Map} from 'leaflet';
 import {TLocation} from '../types/city.ts';
+import {TOffers} from '../types/offer.ts';
 import 'leaflet/dist/leaflet.css';
-import {TILE_LAYER_URL_PATTERN, TILE_LAYER_ATTRIBUTION} from '../components/map/const.ts';
+import {TILE_LAYER_URL_PATTERN, TILE_LAYER_ATTRIBUTION, DEFAULT_ZOOM} from '../components/common/map/const.ts';
 
 type UseMapProps = {
-  mapRef: MutableRefObject<HTMLElement | null>;
-  location: TLocation;
+  location?: TLocation | undefined;
+  mapRef: React.RefObject<HTMLDivElement>;
+  offers?: TOffers;
 }
 
-export function useMap({mapRef, location}: UseMapProps): Map | null {
+export function useMap({mapRef, location = undefined, offers = []}: UseMapProps): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
 
@@ -17,10 +19,10 @@ export function useMap({mapRef, location}: UseMapProps): Map | null {
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = leaflet.map(mapRef.current, {
         center: {
-          lat: location.latitude,
-          lng: location.longitude,
+          lat: location ? location.latitude : 0,
+          lng: location ? location.longitude : 0,
         },
-        zoom: location.zoom,
+        zoom: location ? location.zoom : DEFAULT_ZOOM,
       });
 
       leaflet
@@ -32,7 +34,7 @@ export function useMap({mapRef, location}: UseMapProps): Map | null {
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, location]);
+  }, [mapRef, location, offers]);
 
   return map;
 }

@@ -1,8 +1,8 @@
 import {Route, Routes} from 'react-router-dom';
 import {browserHistory} from '../../browser-history.ts';
 import {useAppSelector} from '../../hooks';
-import {PrivateRoute} from '../private-route/private-route.tsx';
-import {HistoryRouter} from '../history-route/history-route.tsx';
+import {PrivateRoute} from '../routes/private-route/private-route.tsx';
+import {HistoryRouter} from '../routes/history-route/history-route.tsx';
 import {getOffersDataLoadingStatus} from '../../store/app-data/app-data.selectors.ts';
 import {getAuthCheckedStatus, getAuthorizationStatus} from '../../store/user-process/user-process.selectors.ts';
 import {AppRoute} from '../../const.ts';
