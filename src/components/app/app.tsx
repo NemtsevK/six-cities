@@ -1,26 +1,25 @@
 import {Route, Routes} from 'react-router-dom';
-import {browserHistory} from '../../browser-history';
-import {AppRoute, AuthorizationStatus} from '../../const.ts';
+import {browserHistory} from '../../browser-history.ts';
+import {useAppSelector} from '../../hooks';
+import {PrivateRoute} from '../private-route/private-route.tsx';
+import {HistoryRouter} from '../history-route/history-route.tsx';
+import {getOffersDataLoadingStatus} from '../../store/app-data/app-data.selectors.ts';
+import {getAuthCheckedStatus, getAuthorizationStatus} from '../../store/user-process/user-process.selectors.ts';
+import {AppRoute} from '../../const.ts';
 import {MainPage} from '../../pages/main-page/main-page.tsx';
 import {FavoritesPage} from '../../pages/favorites-page/favorites-page.tsx';
 import {LoginPage} from '../../pages/login-page/login-page.tsx';
 import {OfferPage} from '../../pages/offer-page/offer-page.tsx';
 import {NotFoundPage} from '../../pages/not-found-page/not-found-page.tsx';
-import {Spinner} from '../spinner/spinner.tsx';
-import {PrivateRoute} from '../private-route/private-route.tsx';
-import {HistoryRouter} from '../history-route/history-route';
-import {useAppSelector} from '../../hooks';
+import {LoadingPage} from '../../pages/loading-page/loading-page.tsx';
 
 export function App(): JSX.Element {
-  const authorizationStatus = useAppSelector(
-    (state) => state.authorizationStatus
-  );
-  const isOffersDataLoading = useAppSelector(
-    (state) => state.isOffersDataLoading
-  );
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isAuthChecked = useAppSelector(getAuthCheckedStatus);
+  const isOffersDataLoading = useAppSelector(getOffersDataLoadingStatus);
 
-  if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
-    return <Spinner/>;
+  if (!isAuthChecked || isOffersDataLoading) {
+    return <LoadingPage/>;
   }
 
   return (

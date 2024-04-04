@@ -1,3 +1,12 @@
+export const MAX_RATING = 5;
+export const MIN_COMMENT_LENGTH = 50;
+export const MAX_COMMENT_LENGTH = 300;
+export const MAX_IMAGES = 8;
+export const MAX_NEAR_OFFERS = 3;
+export const MAX_OFFER_SCREEN_NEARBY_OFFERS_COUNT = 3;
+export const MAX_OFFER_SCREEN_COMMENTS_COUNT = 10;
+const DEFAULT_ZOOM = 12;
+
 export enum AppRoute {
   Main = '/',
   Login = '/login',
@@ -19,12 +28,6 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export const MAX_RATING = 5;
-
-export const MIN_COMMENT_LENGTH = 50;
-
-export const MAX_COMMENT_LENGTH = 300;
-
 export const ratingsData = [
   {value: '5', title: 'perfect'},
   {value: '4', title: 'good'},
@@ -33,16 +36,16 @@ export const ratingsData = [
   {value: '1', title: 'terribly'},
 ];
 
-export const cities = {
-  PARIS: 'Paris',
-  COLOGNE: 'Cologne',
-  BRUSSELS: 'Brussels',
-  AMSTERDAM: 'Amsterdam',
-  HAMBURG: 'Hamburg',
-  DUSSELDORF: 'Dusseldorf',
-} as const;
+export enum Cities {
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Brussels = 'Brussels',
+  Amsterdam = 'Amsterdam',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf',
+}
 
-const DEFAULT_ZOOM = 12;
+export const citiesNames = Array.from(Object.values(Cities));
 
 export const cityCoordinates = [
   {
@@ -102,6 +105,8 @@ export enum SortingMap {
   TopRatedFirst = 'Top rated first',
 }
 
-export const MAX_NEAR_OFFERS = 3;
-
-export const MAX_OFFER_SCREEN_NEARBY_OFFERS_COUNT = 3;
+export enum NameSpace {
+  Data = 'DATA',
+  App = 'APP',
+  User = 'USER',
+}

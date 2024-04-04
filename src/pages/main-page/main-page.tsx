@@ -1,21 +1,29 @@
+import {useState} from 'react';
 import {Helmet} from 'react-helmet-async';
+import {getOffers} from '../../store/app-data/app-data.selectors';
+import {getCity} from '../../store/app-process/app-process.selectors';
+import {useAppSelector} from '../../hooks';
+import {sortingOffers, filterOffersByCityName, pluralize} from '../../utils.ts';
+import {SortingMap, cityCoordinates, citiesNames} from '../../const.ts';
 import {Header} from '../../components/header/header.tsx';
 import {NoOffers} from '../../components/no-offers/no-offers.tsx';
-import {LocationsList} from '../../components/locations-list/locations-list.tsx';
-import {useAppSelector} from '../../hooks';
+import {Tabs} from '../../components/tabs/tabs.tsx';
 import {OffersList} from '../../components/offers-list/offers-list.tsx';
 import {Map} from '../../components/map/map.tsx';
-import {Sorting} from '../../components/sorting/sorting.tsx';
-import {sortingOffers, filterOffersByCityName, pluralize} from '../../utils.ts';
-import {SortingMap, cityCoordinates} from '../../const.ts';
-import {useState} from 'react';
+import {SortingOptions} from '../../components/sorting-options/sorting-options.tsx';
+import {ErrorPage} from '../error-page/error-page.tsx';
 
 export function MainPage(): JSX.Element {
   const [sortOption, setSortOption] = useState<string>(SortingMap.Popular);
-  const offers = useAppSelector((state) => state.offers);
-  const currentLocation = useAppSelector((state) => state.city);
   const [sortingOptionsVisible, setSortingOptionsVisible] = useState<boolean>(false);
   const [hoveredOfferId, setHoveredOfferId] = useState<string | null>(null);
+
+  const offers = useAppSelector(getOffers);
+  const currentLocation = useAppSelector(getCity);
+
+  if (offers.length === 0) {
+    return <ErrorPage/>;
+  }
 
   const handleSortOptionClick = () => {
     setSortingOptionsVisible(true);
@@ -46,14 +54,10 @@ export function MainPage(): JSX.Element {
       <Helmet>
         <title>6 cities. {currentLocation}</title>
       </Helmet>
-      <Header isActiveLogo isNav/>
+      <Header/>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <div className="tabs">
-          <section className="locations container">
-            <LocationsList/>
-          </section>
-        </div>
+        <Tabs cities={citiesNames}/>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
@@ -74,7 +78,7 @@ export function MainPage(): JSX.Element {
                     <use xlinkHref="#icon-arrow-select"></use>
                   </svg>
                 </span>
-                <Sorting
+                <SortingOptions
                   handleSort={handleSort}
                   sortingOptionsVisible={sortingOptionsVisible}
                   setSortingOptionsVisible={setSortingOptionsVisible}

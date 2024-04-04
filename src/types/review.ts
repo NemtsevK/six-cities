@@ -1,17 +1,17 @@
-import {User} from './user.ts';
+import {TUser} from './user.ts';
 
-export type Review = {
+export type TReview = {
   id: string;
   date: string;
-  user: User;
+  user: TUser;
   comment: string;
   rating: number;
 };
 
-export type CommentData = {
+export type TCommentData = {
   id: string;
   comment: string;
   rating: number;
 };
 
-export type Reviews = Review[];
+export type TReviews = TReview[];

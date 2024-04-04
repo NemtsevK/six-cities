@@ -1,13 +1,13 @@
 import {useRef, useEffect} from 'react';
 import leaflet from 'leaflet';
 import {useMap} from '../../hooks/use-map.tsx';
-import {City} from '../../types/city.ts';
-import {Offers} from '../../types/offer.ts';
+import {TCity} from '../../types/city.ts';
+import {TOffers} from '../../types/offer.ts';
 import {DEFAULT_ICON, ACTIVE_ICON} from './const';
 
 type MapProps = {
-  city: City;
-  offers: Offers;
+  city: TCity;
+  offers: TOffers;
   activeOfferId?: string | null;
   className?: string;
 }

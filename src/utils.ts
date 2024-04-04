@@ -1,15 +1,15 @@
-import {Offer, Offers} from './types/offer.ts';
+import {TOffer, TOffers} from './types/offer.ts';
 import {MAX_RATING, SortingMap} from './const.ts';
 
 export const getRatingWidth = (rating: number) => `${Math.round(rating / MAX_RATING) * 100}%`;
 
-const sortByRating = (itemA: Offer, itemB: Offer) => itemB.rating - itemA.rating;
+const sortByRating = (itemA: TOffer, itemB: TOffer) => itemB.rating - itemA.rating;
 
-const sortLowToHighPrice = (itemA: Offer, itemB: Offer) => itemA.price - itemB.price;
+const sortLowToHighPrice = (itemA: TOffer, itemB: TOffer) => itemA.price - itemB.price;
 
-const sortHighToLowPrice = (itemA: Offer, itemB: Offer) => itemB.price - itemA.price;
+const sortHighToLowPrice = (itemA: TOffer, itemB: TOffer) => itemB.price - itemA.price;
 
-export function sortingOffers(sortOption: string, offers: Offers) {
+export function sortingOffers(sortOption: string, offers: TOffers) {
   switch (sortOption) {
     case SortingMap.Popular:
       break;
@@ -30,8 +30,8 @@ export function sortingOffers(sortOption: string, offers: Offers) {
 }
 
 export const filterOffersByCityName = (
-  cityOffers: Offers,
+  cityOffers: TOffers,
   cityName: string,
-): Offers => cityOffers.filter((offer) => offer.city.name === cityName);
+): TOffers => cityOffers.filter((offer) => offer.city.name === cityName);
 
 export const pluralize = (count: number): string => count > 1 ? 's' : '';

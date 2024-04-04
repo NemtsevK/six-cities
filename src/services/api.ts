@@ -1,18 +1,19 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse} from 'axios';
-import {getToken} from './token.ts';
 import {toast} from 'react-toastify';
+import {getToken} from './token.ts';
 import {BACKEND_URL, REQUEST_TIMEOUT, StatusCodeMapping} from './const.ts';
+
+interface AdaptAxiosRequestConfig extends AxiosRequestConfig {
+  headers: AxiosRequestHeaders;
+}
 
 type DetailMessageType = {
   type: string;
   message: string;
 };
 
-const shouldDisplayError = (response: AxiosResponse) => StatusCodeMapping[response.status];
-
-interface InternalAxiosRequestConfig extends AxiosRequestConfig {
-  headers: AxiosRequestHeaders;
-}
+const shouldDisplayError = (response: AxiosResponse) =>
+  StatusCodeMapping[response.status];
 
 export const createAPI = (): AxiosInstance => {
   const api = axios.create({
@@ -20,17 +21,15 @@ export const createAPI = (): AxiosInstance => {
     timeout: REQUEST_TIMEOUT,
   });
 
-  api.interceptors.request.use(
-    (config: InternalAxiosRequestConfig) => {
-      const token = getToken();
+  api.interceptors.request.use((config): AdaptAxiosRequestConfig => {
+    const token = getToken();
 
-      if (token && config.headers) {
-        config.headers['x-token'] = token;
-      }
+    if (token && config.headers) {
+      config.headers['x-token'] = token;
+    }
 
-      return config;
-    },
-  );
+    return config;
+  });
 
   api.interceptors.response.use(
     (response) => response,

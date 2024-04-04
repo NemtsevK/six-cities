@@ -2,6 +2,7 @@ import {AppRoute, AuthorizationStatus} from '../../const';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {redirectToRoute} from '../../store/action';
 import {toggleFavoriteAction} from '../../store/api-actions';
+import {getAuthCheckedStatus, getAuthorizationStatus} from '../../store/user-process/user-process.selectors';
 
 type BookmarkButtonProps = {
   isOfferScreen?: boolean;
@@ -13,9 +14,8 @@ type BookmarkButtonProps = {
 
 export function BookmarkButton({isOfferScreen, isFavorite, width, height, id,}: BookmarkButtonProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector(
-    (state) => state.authorizationStatus
-  );
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  useAppSelector(getAuthCheckedStatus);
 
   const buttonClassName = isOfferScreen
     ? 'offer__bookmark-button'

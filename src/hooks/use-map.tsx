@@ -1,12 +1,12 @@
 import {useEffect, useState, useRef, MutableRefObject} from 'react';
 import leaflet, {Map} from 'leaflet';
-import {Location} from '../types/city.ts';
+import {TLocation} from '../types/city.ts';
 import 'leaflet/dist/leaflet.css';
 import {TILE_LAYER_URL_PATTERN, TILE_LAYER_ATTRIBUTION} from '../components/map/const.ts';
 
 type UseMapProps = {
   mapRef: MutableRefObject<HTMLElement | null>;
-  location: Location;
+  location: TLocation;
 }
 
 export function useMap({mapRef, location}: UseMapProps): Map | null {
