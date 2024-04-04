@@ -1,10 +1,28 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const.ts';
 
-export function Logo(): JSX.Element {
+type LogoProps = {
+  className: string;
+  width: string;
+  height: string;
+  isMainPage?: boolean;
+};
+
+export function Logo({className, width, height, isMainPage = false}: LogoProps): JSX.Element {
+  const isActiveClass = isMainPage ? `${className}__logo-link--active` : '';
+
   return (
-    <Link className="header__logo-link" to={AppRoute.Main}>
-      <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
+    <Link
+      className={`${className}__logo-link ${isActiveClass}`}
+      to={AppRoute.Main}
+    >
+      <img
+        className={`${className}__logo`}
+        src="img/logo.svg"
+        alt="6 cities logo"
+        width={width}
+        height={height}
+      />
     </Link>
   );
 }

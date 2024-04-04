@@ -1,6 +1,6 @@
-import {NameSpace} from '../../const.ts';
+import {AuthorizationStatus, NameSpace} from '../../const.ts';
 import {TState} from '../../types/state.ts';
-import {AuthorizationStatus} from '../../const.ts';
+import {TUser} from '../../types/user.ts';
 
 export const getAuthorizationStatus = (
   state: Pick<TState, NameSpace.User>
@@ -10,3 +10,5 @@ export const getAuthCheckedStatus = (
   state: Pick<TState, NameSpace.User>
 ): boolean =>
   state[NameSpace.User].authorizationStatus !== AuthorizationStatus.Unknown;
+
+export const getUserData = (state: TState): TUser => state[NameSpace.User].userData;

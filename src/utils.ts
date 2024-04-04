@@ -3,6 +3,13 @@ import {MAX_RATING, SortingMap} from './const.ts';
 
 export const getRatingWidth = (rating: number) => `${Math.round(rating / MAX_RATING) * 100}%`;
 
+export const filterOffersByCityName = (
+  cityOffers: TOffers,
+  cityName: string,
+): TOffers => cityOffers.filter((offer) => offer.city.name === cityName);
+
+export const pluralize = (count: number): string => count > 1 ? 's' : '';
+
 const sortByRating = (itemA: TOffer, itemB: TOffer) => itemB.rating - itemA.rating;
 
 const sortLowToHighPrice = (itemA: TOffer, itemB: TOffer) => itemA.price - itemB.price;
@@ -29,9 +36,8 @@ export function sortingOffers(sortOption: string, offers: TOffers) {
   return offers;
 }
 
-export const filterOffersByCityName = (
-  cityOffers: TOffers,
-  cityName: string,
-): TOffers => cityOffers.filter((offer) => offer.city.name === cityName);
-
-export const pluralize = (count: number): string => count > 1 ? 's' : '';
+export function capitalizeFirstLetter(string?: string) {
+  if (string) {
+    return string.charAt(0)?.toUpperCase() + string.slice(1);
+  }
+}

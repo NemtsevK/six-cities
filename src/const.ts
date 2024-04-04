@@ -1,3 +1,5 @@
+import {DEFAULT_ZOOM} from './components/common/map/const.ts';
+
 export const MAX_RATING = 5;
 export const MIN_COMMENT_LENGTH = 50;
 export const MAX_COMMENT_LENGTH = 300;
@@ -5,7 +7,6 @@ export const MAX_IMAGES = 8;
 export const MAX_NEAR_OFFERS = 3;
 export const MAX_OFFER_SCREEN_NEARBY_OFFERS_COUNT = 3;
 export const MAX_OFFER_SCREEN_COMMENTS_COUNT = 10;
-const DEFAULT_ZOOM = 12;
 
 export enum AppRoute {
   Main = '/',

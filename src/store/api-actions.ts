@@ -3,7 +3,7 @@ import {AxiosInstance} from 'axios';
 import {APIRoute, AppRoute} from '../const.ts';
 import {dropToken, saveToken} from '../services/token.ts';
 import {TAuthData} from '../types/auth-data.ts';
-import {TReview, TCommentData, TReviews} from '../types/review.ts';
+import {TReview, TReviewData, TReviews} from '../types/review.ts';
 import {TOffer, TOffers} from '../types/offer.ts';
 import {TAppDispatch, TState} from '../types/state.ts';
 import {TUser} from '../types/user.ts';
@@ -108,7 +108,7 @@ export const fetchNearbyOffersAction = createAsyncThunk<
 
 export const postCommentAction = createAsyncThunk<
   TReview,
-  TCommentData,
+  TReviewData,
   { extra: AxiosInstance }
 >('offers/postComment', async ({id, comment, rating}, {extra: api}) => {
   const {data} = await api.post<TReview>(`/comments/${id}`, {
@@ -128,5 +128,18 @@ export const fetchFavoriteOffersAction = createAsyncThunk<
   }
 >('data/fetchFavoriteOffers', async (_arg, {extra: api}) => {
   const {data} = await api.get<TOffers>(APIRoute.Favorite);
+  return data;
+});
+
+export const fetchUserDataAction = createAsyncThunk<
+  TUser,
+  undefined,
+  {
+    dispatch: TAppDispatch;
+    state: TState;
+    extra: AxiosInstance;
+  }
+>('data/fetchUserData', async (_arg, { extra: api }) => {
+  const { data } = await api.get<TUser>(APIRoute.Login);
   return data;
 });
