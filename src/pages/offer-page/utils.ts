@@ -1,5 +1,5 @@
 import {TOffer, TOffers} from '../../types/offer.ts';
-import {MAX_NEAR_OFFERS} from '../../const.ts';
+import {MAX_NEAR_OFFERS_COUNT} from '../../const.ts';
 
 type NearbyOffersProp = {
   offer: TOffer;
@@ -14,7 +14,7 @@ export function getNearbyOffers({offer, offers}: NearbyOffersProp): TOffers {
       nearbyOffers.push(offers[i]);
     }
 
-    if (nearbyOffers.length >= MAX_NEAR_OFFERS) {
+    if (nearbyOffers.length >= MAX_NEAR_OFFERS_COUNT) {
       break;
     }
   }

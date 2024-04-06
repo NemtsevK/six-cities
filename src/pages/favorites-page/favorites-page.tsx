@@ -12,7 +12,13 @@ export function FavoritesPage(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchFavoriteOffersAction());
+    let isMounted = true;
+    if (isMounted) {
+      dispatch(fetchFavoriteOffersAction());
+    }
+    return () => {
+      isMounted = false;
+    };
   }, [dispatch]);
 
   const favoriteOffers = useAppSelector(getFavoriteOffers);

@@ -3,8 +3,8 @@ import {DEFAULT_ZOOM} from './components/common/map/const.ts';
 export const MAX_RATING = 5;
 export const MIN_COMMENT_LENGTH = 50;
 export const MAX_COMMENT_LENGTH = 300;
-export const MAX_IMAGES = 8;
-export const MAX_NEAR_OFFERS = 3;
+export const MAX_IMAGES_COUNT = 8;
+export const MAX_NEAR_OFFERS_COUNT = 3;
 export const MAX_OFFER_SCREEN_NEARBY_OFFERS_COUNT = 3;
 export const MAX_OFFER_SCREEN_COMMENTS_COUNT = 10;
 
@@ -45,6 +45,8 @@ export enum Cities {
   Hamburg = 'Hamburg',
   Dusseldorf = 'Dusseldorf',
 }
+
+export const DEFAULT_CITY_NAME = Cities.Paris;
 
 export const citiesNames = Array.from(Object.values(Cities));
 

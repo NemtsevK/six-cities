@@ -1,18 +1,24 @@
 import {useEffect, useState} from 'react';
 import {Helmet} from 'react-helmet-async';
-import {Locations} from '../../components/login/locations/locations';
-import {LoginForm} from '../../components/login/login-form/login-form';
+import {Locations} from '../../components/login/locations/locations.tsx';
+import {LoginForm} from '../../components/login/login-form/login-form.tsx';
 import {Header} from '../../components/header/header.tsx';
-import {Cities} from '../../const';
+import {citiesNames} from '../../const.ts';
+import {getRandomCityName} from '../../utils.ts';
 
 export function LoginPage(): JSX.Element {
-  const randomCityKey = Object.keys(Cities)[Math.floor(Math.random() * Object.keys(Cities).length)];
-
-  const [randomCity, setRandomCity] = useState(randomCityKey);
+  const randomCityName = getRandomCityName(citiesNames);
+  const [randomCity, setRandomCity] = useState(randomCityName);
 
   useEffect(() => {
-    setRandomCity(randomCityKey);
-  }, [randomCityKey]);
+    let isMounted = true;
+    if (isMounted) {
+      setRandomCity(randomCityName);
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, [randomCityName]);
 
   return (
     <div className="page page--gray page--login">

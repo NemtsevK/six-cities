@@ -1,6 +1,6 @@
 import {FormEvent, useEffect, useRef} from 'react';
-import {useNavigate} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../../const';
+import {redirectToRoute} from '../../../store/action.ts';
 import {loginAction} from '../../../store/api-actions';
 import {getAuthorizationStatus} from '../../../store/user-process/user-process.selectors';
 import {useAppDispatch, useAppSelector} from '../../../hooks';
@@ -13,13 +13,12 @@ export function LoginForm(): JSX.Element {
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (authorizationStatus === AuthorizationStatus.Auth) {
-      navigate(AppRoute.Main, {replace: true});
+      dispatch(redirectToRoute(AppRoute.Main));
     }
-  }, [authorizationStatus, navigate]);
+  }, [authorizationStatus, dispatch]);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
