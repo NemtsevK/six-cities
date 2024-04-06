@@ -11,4 +11,4 @@ export const getAuthCheckedStatus = (
 ): boolean =>
   state[NameSpace.User].authorizationStatus !== AuthorizationStatus.Unknown;
 
-export const getUserData = (state: TState): TUser => state[NameSpace.User].userData;
+export const getUserData = (state: Pick<TState, NameSpace.User>): TUser => state[NameSpace.User].userData;

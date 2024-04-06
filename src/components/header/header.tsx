@@ -18,10 +18,14 @@ export function Header() {
   const userData = useAppSelector(getUserData);
 
   useEffect(() => {
-    if (authorizationStatus === AuthorizationStatus.Auth) {
+    let isMounted = true;
+    if (isMounted && authorizationStatus === AuthorizationStatus.Auth) {
       dispatch(fetchUserDataAction());
       dispatch(fetchFavoriteOffersAction());
     }
+    return () => {
+      isMounted = false;
+    };
   }, [dispatch, authorizationStatus]);
 
   const handleLogout = (event: React.FormEvent) => {
