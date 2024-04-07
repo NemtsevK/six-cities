@@ -31,7 +31,7 @@ export function Map({city, offers, activeOfferId, className}: MapProps): JSX.Ele
       markerLayer.current.addTo(map);
       markerLayer.current.clearLayers();
     }
-  }, [city, map]);
+  }, [map, city, offers]);
 
   useEffect(() => {
     if (map) {
@@ -42,15 +42,16 @@ export function Map({city, offers, activeOfferId, className}: MapProps): JSX.Ele
           const marker = leaflet.marker(
             [offer.location.latitude, offer.location.longitude],
             {
-              icon: offer.id === activeOfferId ? ACTIVE_ICON : DEFAULT_ICON
+              icon: activeOfferId === offer.id ? ACTIVE_ICON : DEFAULT_ICON
             }
           );
 
           marker.addTo(markerLayer.current);
         }
       });
+      markerLayer.current.addTo(map);
     }
   }, [activeOfferId, map, offers]);
 
-  return <section className={`${className} map`} ref={mapRef} data-testid="mapSectionElement"></section>;
+  return <section className={`${className}__map map`} ref={mapRef} data-testid="mapSectionElement"></section>;
 }

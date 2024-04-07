@@ -1,12 +1,10 @@
 import {DEFAULT_ZOOM} from './components/common/map/const.ts';
-import { TAppData } from './types/state.ts';
+import {TAppData} from './types/state.ts';
 
-export const MAX_RATING = 5;
 export const MIN_COMMENT_LENGTH = 50;
 export const MAX_COMMENT_LENGTH = 300;
-export const MAX_IMAGES_COUNT = 8;
-export const MAX_NEAR_OFFERS_COUNT = 3;
-export const MAX_OFFER_SCREEN_NEARBY_OFFERS_COUNT = 3;
+export const MAX_IMAGES_COUNT = 6;
+export const MAX_OFFER_PAGE_NEARBY_OFFERS_COUNT = 3;
 export const MAX_OFFER_SCREEN_COMMENTS_COUNT = 10;
 
 export enum AppRoute {
@@ -137,5 +135,5 @@ export const DEFAULT_STATE = {
     isUserDataLoading: false,
     userData: {} as TAppData['userData'],
   },
-  APP: { city: DEFAULT_CITY_NAME },
+  APP: {city: DEFAULT_CITY_NAME},
 };

@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import {AppRoute} from '../../../const.ts';
 import {TOffer} from '../../../types/offer.ts';
 import {getRatingWidth} from '../../../utils.ts';
@@ -30,17 +30,22 @@ export function OfferCard({offer, isActive, onOfferHover, isFavoriteItem, size}:
     isPremium
   } = offer;
 
-  const handleMouseEnter = () => {
-    onOfferHover?.(id);
-  };
+  const location = useLocation();
+  let className;
 
-  const handleMouseLeave = () => {
-    onOfferHover?.('');
-  };
-
-  const articleClassName = `${
-    isFavoriteItem ? 'favorites__card place-card' : 'cities__card place-card'
-  }`;
+  switch (true) {
+    case location.pathname === String(AppRoute.Main):
+      className = 'cities';
+      break;
+    case /^\/offer\//.test(location.pathname):
+      className = 'near-places';
+      break;
+    case location.pathname === String(AppRoute.Favorites):
+      className = 'favorites';
+      break;
+    default:
+      className = 'cities';
+  }
 
   const wrapperClassName = `${
     isFavoriteItem
@@ -50,16 +55,16 @@ export function OfferCard({offer, isActive, onOfferHover, isFavoriteItem, size}:
 
   return (
     <article
-      className={` ${articleClassName} ${isActive ? 'active' : ''}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      className={` ${className}__card place-card ${isActive ? 'active' : ''}`}
+      onMouseEnter={() => onOfferHover && onOfferHover(id)}
+      onMouseLeave={() => onOfferHover && onOfferHover('')}
       data-testid="cardArticleElement"
     >
       <div className={isPremium ? 'place-card__mark' : 'visually-hidden'}>
         <span>{isPremium ? 'Premium' : null}</span>
       </div>
       <div className={`${wrapperClassName}`}>
-        <Link to={`${AppRoute.Offer}/${id}`}>
+        <Link to={`/offer/${id}`}>
           <img
             className="place-card__image"
             src={previewImage}
@@ -88,7 +93,7 @@ export function OfferCard({offer, isActive, onOfferHover, isFavoriteItem, size}:
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${AppRoute.Offer}/${id}`}>{title}</Link>
+          <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

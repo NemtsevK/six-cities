@@ -9,10 +9,9 @@ import {
   getOffer,
   getOfferDataLoadingStatus,
   getOffers,
-} from '../../store/app-data/app-data.selectors';
-import {TReviews} from '../../types/review.ts';
-import {TOffer, TOffers} from '../../types/offer.ts';
-import {cityCoordinates, MAX_OFFER_SCREEN_NEARBY_OFFERS_COUNT} from '../../const.ts';
+} from '../../store/app-data/app-data.selectors.ts';
+import {TOffers} from '../../types/offer.ts';
+import {cityCoordinates, MAX_OFFER_PAGE_NEARBY_OFFERS_COUNT} from '../../const.ts';
 import {fetchCommentsAction, fetchNearbyOffersAction, fetchOfferAction} from '../../store/api-actions.ts';
 import {LoadingPage} from '../loading-page/loading-page.tsx';
 import {NotFoundPage} from '../not-found-page/not-found-page.tsx';
@@ -25,22 +24,16 @@ import {MapSection} from '../../components/offer/map-section/map-section.tsx';
 export function OfferPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const {id} = useParams<{ id: string | undefined }>();
-
   const offers = useAppSelector(getOffers);
-  const nearbyOffers = useAppSelector<TOffers>(getNearbyOffers);
+  const nearbyOffers = useAppSelector(getNearbyOffers);
   const hasError = useAppSelector(getErrorOfferLoadingStatus);
-
-  const offer = useAppSelector<TOffer>(getOffer);
+  const offer = useAppSelector(getOffer);
   const isOfferDataLoading = useAppSelector(getOfferDataLoadingStatus);
-
-  const reviews = useAppSelector<TReviews>(getComments);
-
+  const reviews = useAppSelector(getComments);
   const selectedCity = offers.find((offerItem) => offerItem.id === id)?.city;
-
   const activeCityCoordinates = cityCoordinates.find(
     (city) => city.name.toLowerCase() === selectedCity?.name.toLowerCase()
   );
-
   const [slicedNearbyOffers, setSlicedNearbyOffers] = useState<TOffers>([]);
   const [offersToMap, setOffersToMap] = useState<TOffers>([]);
 
@@ -54,13 +47,13 @@ export function OfferPage(): JSX.Element {
     return () => {
       isMounted = false;
     };
-  }, [id, dispatch]);
+  }, [dispatch, id]);
 
   useEffect(() => {
     let isMounted = true;
     if (isMounted && nearbyOffers.length > 0) {
       setSlicedNearbyOffers(
-        nearbyOffers.slice(0, MAX_OFFER_SCREEN_NEARBY_OFFERS_COUNT)
+        nearbyOffers.slice(0, MAX_OFFER_PAGE_NEARBY_OFFERS_COUNT)
       );
     }
     return () => {

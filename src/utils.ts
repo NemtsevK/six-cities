@@ -1,7 +1,7 @@
 import {TOffer, TOffers} from './types/offer.ts';
-import {MAX_RATING, SortingMap} from './const.ts';
+import {SortingMap} from './const.ts';
 
-export const getRatingWidth = (rating: number) => `${Math.round(rating / MAX_RATING) * 100}%`;
+export const getRatingWidth = (rating: number) => `${(Math.round(rating) * 20).toString()}%`;
 
 export const filterOffersByCityName = (
   cityOffers: TOffers,
