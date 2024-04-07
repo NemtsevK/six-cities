@@ -1,9 +1,9 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import leaflet, {Map} from 'leaflet';
 import {TLocation} from '../types/city.ts';
 import {TOffers} from '../types/offer.ts';
 import 'leaflet/dist/leaflet.css';
-import {TILE_LAYER_URL_PATTERN, TILE_LAYER_ATTRIBUTION, DEFAULT_ZOOM} from '../components/common/map/const.ts';
+import {DEFAULT_ZOOM, TILE_LAYER_ATTRIBUTION, TILE_LAYER_URL_PATTERN} from '../components/common/map/const.ts';
 
 type UseMapProps = {
   location?: TLocation | undefined;
@@ -11,7 +11,7 @@ type UseMapProps = {
   offers?: TOffers;
 }
 
-export function useMap({mapRef, location = undefined, offers = []}: UseMapProps): Map | null {
+export function useMap({location = undefined, mapRef, offers = []}: UseMapProps): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
 

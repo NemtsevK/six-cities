@@ -8,7 +8,7 @@ type OffersListProps = {
   onOfferHover?: (offerId: string) => void;
 };
 
-export function OffersList({offers, className, isActive = false, onOfferHover}: OffersListProps): JSX.Element {
+export function OffersList({offers, className, isActive = false, onOfferHover = () => {}}: OffersListProps): JSX.Element {
   return (
     <div className={`${className}`} data-testid="offersListElement">
       {offers.map((offer) => (
