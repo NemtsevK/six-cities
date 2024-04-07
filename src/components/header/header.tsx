@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const.ts';
 import {fetchFavoriteOffersAction, logoutAction, fetchUserDataAction} from '../../store/api-actions.ts';
-import {getFavoriteOffers} from '../../store/app-data/app-data.selectors.ts';
-import {getAuthorizationStatus, getUserData} from '../../store/user-process/user-process.selectors.ts';
+import {getFavoriteOffers, getUserData} from '../../store/app-data/app-data.selectors.ts';
+import {getAuthorizationStatus} from '../../store/user-process/user-process.selectors.ts';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {Logo} from '../logo/logo.tsx';
 import {HeaderNav} from './header-nav/header-nav.tsx';
@@ -67,7 +67,7 @@ export function Header() {
   );
 
   return (
-    <header className="header">
+    <header className="header" data-testid="headerElement">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">

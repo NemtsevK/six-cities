@@ -1,8 +1,7 @@
+import {HelmetProvider} from 'react-helmet-async';
 import {Route, Routes} from 'react-router-dom';
-import {browserHistory} from '../../browser-history.ts';
 import {useAppSelector} from '../../hooks';
 import {PrivateRoute} from '../routes/private-route/private-route.tsx';
-import {HistoryRouter} from '../routes/history-route/history-route.tsx';
 import {getOffersDataLoadingStatus} from '../../store/app-data/app-data.selectors.ts';
 import {getAuthCheckedStatus, getAuthorizationStatus} from '../../store/user-process/user-process.selectors.ts';
 import {AppRoute} from '../../const.ts';
@@ -23,7 +22,7 @@ export function App(): JSX.Element {
   }
 
   return (
-    <HistoryRouter history={browserHistory}>
+    <HelmetProvider>
       <Routes>
         <Route index element={<MainPage/>}/>
         <Route
@@ -38,6 +37,6 @@ export function App(): JSX.Element {
         <Route path={AppRoute.Login} element={<LoginPage/>}/>
         <Route path={AppRoute.NotFound} element={<NotFoundPage/>}/>
       </Routes>
-    </HistoryRouter>
+    </HelmetProvider>
   );
 }

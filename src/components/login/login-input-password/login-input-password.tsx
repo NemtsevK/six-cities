@@ -17,6 +17,7 @@ export function LoginInputPassword({passwordRef}: LoginInputPasswordProps): JSX.
         placeholder="Password"
         ref={passwordRef}
         required
+        data-testid="passwordElement"
       />
     </div>
   );

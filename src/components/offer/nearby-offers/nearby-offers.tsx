@@ -1,11 +1,11 @@
 import {TOffers} from '../../../types/offer.ts';
 import {OffersList} from '../../main/offers-list/offers-list.tsx';
 
-type NearbyPlacesProps = {
+type NearbyOffersProps = {
   slicedNearbyOffers: TOffers;
 }
 
-export function NearbyPlaces({slicedNearbyOffers}: NearbyPlacesProps): JSX.Element {
+export function NearbyOffers({slicedNearbyOffers}: NearbyOffersProps): JSX.Element {
   if (slicedNearbyOffers.length === 0) {
     return (
       <section className="near-places places">

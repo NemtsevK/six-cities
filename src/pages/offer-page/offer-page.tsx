@@ -17,7 +17,7 @@ import {fetchCommentsAction, fetchNearbyOffersAction, fetchOfferAction} from '..
 import {LoadingPage} from '../loading-page/loading-page.tsx';
 import {NotFoundPage} from '../not-found-page/not-found-page.tsx';
 import {Header} from '../../components/header/header.tsx';
-import {NearbyPlaces} from '../../components/offer/nearby-places/nearby-places.tsx';
+import {NearbyOffers} from '../../components/offer/nearby-offers/nearby-offers.tsx';
 import {OfferGallery} from '../../components/offer/offer-gallery/offer-gallery.tsx';
 import {OfferDetails} from '../../components/offer/offer-details/offer-details.tsx';
 import {MapSection} from '../../components/offer/map-section/map-section.tsx';
@@ -92,7 +92,7 @@ export function OfferPage(): JSX.Element {
         <title>6 cities. Offer</title>
       </Helmet>
       <Header/>
-      <main className="page__main page__main--offer">
+      <main className="page__main page__main--offer" data-testid="offerMainElement">
         <section className="offer">
           <OfferGallery images={offer.images}/>
           <OfferDetails
@@ -109,7 +109,7 @@ export function OfferPage(): JSX.Element {
           />
         </section>
         <div className="container">
-          <NearbyPlaces slicedNearbyOffers={slicedNearbyOffers}/>
+          <NearbyOffers slicedNearbyOffers={slicedNearbyOffers}/>
         </div>
       </main>
     </div>

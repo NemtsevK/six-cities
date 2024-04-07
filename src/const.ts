@@ -1,4 +1,5 @@
 import {DEFAULT_ZOOM} from './components/common/map/const.ts';
+import { TAppData } from './types/state.ts';
 
 export const MAX_RATING = 5;
 export const MIN_COMMENT_LENGTH = 50;
@@ -14,6 +15,7 @@ export enum AppRoute {
   Favorites = '/favorites',
   Offer = '/offer/:id',
   NotFound = '*',
+  Lose = '/lose',
 }
 
 export enum APIRoute {
@@ -21,6 +23,7 @@ export enum APIRoute {
   Favorite = '/favorite',
   Login = '/login',
   Logout = '/logout',
+  Comments = '/comments',
 }
 
 export enum AuthorizationStatus {
@@ -113,3 +116,26 @@ export enum NameSpace {
   App = 'APP',
   User = 'USER',
 }
+
+export const DEFAULT_STATE = {
+  USER: {
+    authorizationStatus: AuthorizationStatus.NoAuth,
+  },
+  DATA: {
+    offers: [],
+    isOffersDataLoading: false,
+    hasError: false,
+    isToggleFavoriteLoading: false,
+    offer: {} as TAppData['offer'],
+    isOfferDataLoading: false,
+    comments: [],
+    nearbyOffers: [],
+    favoriteOffers: [],
+    isCommentDataSending: false,
+    hasSubmitError: false,
+    hasOfferDataLoadingError: false,
+    isUserDataLoading: false,
+    userData: {} as TAppData['userData'],
+  },
+  APP: { city: DEFAULT_CITY_NAME },
+};

@@ -1,14 +1,11 @@
 import {AuthorizationStatus, NameSpace} from '../../const.ts';
 import {TState} from '../../types/state.ts';
-import {makeFakeUser} from '../../mocks/mocks.ts';
-import {getAuthCheckedStatus, getAuthorizationStatus, getUserData} from './user-process.selectors';
+import {getAuthCheckedStatus, getAuthorizationStatus} from './user-process.selectors.ts';
 
 describe('UserProcess selectors', () => {
-  const mockUser = makeFakeUser();
   const mockState = {
     [NameSpace.User]: {
       authorizationStatus: AuthorizationStatus.Auth,
-      userData: mockUser,
     },
   };
   describe('getAuthorizationStatus', () => {
@@ -29,22 +26,6 @@ describe('UserProcess selectors', () => {
         mockState as Pick<TState, NameSpace.User>
       );
       expect(result).toBe(false);
-    });
-  });
-
-  describe('getUserData', () => {
-    it('should return correct UserData', () => {
-      const expectedUserData = mockUser;
-      expect(getUserData(mockState as Pick<TState, NameSpace.User>)).toEqual(
-        expectedUserData
-      );
-    });
-
-    it('test_getUserData_returnsUndefined', () => {
-      mockState[NameSpace.User] = {} as TState[NameSpace.User];
-      expect(
-        getUserData(mockState as Pick<TState, NameSpace.User>)
-      ).toBeUndefined();
     });
   });
 });

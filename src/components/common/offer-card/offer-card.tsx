@@ -53,6 +53,7 @@ export function OfferCard({offer, isActive, onOfferHover, isFavoriteItem, size}:
       className={` ${articleClassName} ${isActive ? 'active' : ''}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      data-testid="cardArticleElement"
     >
       <div className={isPremium ? 'place-card__mark' : 'visually-hidden'}>
         <span>{isPremium ? 'Premium' : null}</span>

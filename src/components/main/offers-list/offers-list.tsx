@@ -10,7 +10,7 @@ type OffersListProps = {
 
 export function OffersList({offers, className, isActive = false, onOfferHover}: OffersListProps): JSX.Element {
   return (
-    <div className={`${className}`}>
+    <div className={`${className}`} data-testid="offersListElement">
       {offers.map((offer) => (
         <OfferCard
           key={offer.id}

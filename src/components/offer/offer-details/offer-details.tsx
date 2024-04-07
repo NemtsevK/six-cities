@@ -34,7 +34,7 @@ export function OfferDetails({offer, isPremium, isFavorite, id, reviews}: OfferD
   const capitalizedType = capitalizeFirstLetter(type);
 
   return (
-    <section className="offer__container container">
+    <section className="offer__container container" data-testid="offerDetailsSectionElement">
       <div className="offer__wrapper">
         {isPremium && (
           <div className="offer__mark">
@@ -48,7 +48,7 @@ export function OfferDetails({offer, isPremium, isFavorite, id, reviews}: OfferD
             isFavorite={isFavorite}
             width={'31'}
             height={'31'}
-            isOfferScreen
+            isOfferPage
           />
         </div>
         <OfferRating rating={rating}/>

@@ -3,7 +3,7 @@ import {AppRoute} from '../../../const.ts';
 
 export function UnauthenticatedUser() {
   return (
-    <li className="header__nav-item user">
+    <li className="header__nav-item user" data-testid="navNoAuthUserElement">
       <Link
         className="header__nav-link header__nav-link--profile"
         to={AppRoute.Login}

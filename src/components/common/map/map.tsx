@@ -50,5 +50,5 @@ export function Map({city, offers, activeOfferId, className}: MapProps): JSX.Ele
     }
   }, [activeOfferId, map, offers]);
 
-  return <section className={`${className} map`} ref={mapRef}></section>;
+  return <section className={`${className} map`} ref={mapRef} data-testid="mapSectionElement"></section>;
 }

@@ -12,7 +12,7 @@ export function ReviewsList({reviews}: ReviewsListProps): JSX.Element {
   }
 
   return (
-    <ul className="reviews__list">
+    <ul className="reviews__list" data-testid="reviewsListElement">
       {reviews.map((review: TReview) => (
         <ReviewsItem key={uuidv4()} review={review}/>
       ))}
