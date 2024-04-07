@@ -15,6 +15,7 @@ export function LoginInputEmail({loginRef}: LoginInputEmailProps): JSX.Element {
         placeholder="Email"
         ref={loginRef}
         required
+        data-testid="emailElement"
       />
     </div>
   );

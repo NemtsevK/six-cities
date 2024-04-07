@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../../const.ts';
+import {TOffer} from '../../types/offer.ts';
 import {TAppData} from '../../types/state.ts';
 import {
   fetchCommentsAction,
@@ -7,6 +8,7 @@ import {
   fetchNearbyOffersAction,
   fetchOfferAction,
   fetchOffersAction,
+  fetchUserDataAction,
   postCommentAction,
   toggleFavoriteAction,
 } from '../api-actions.ts';
@@ -24,6 +26,8 @@ const initialState: TAppData = {
   isCommentDataSending: false,
   hasSubmitError: false,
   hasOfferDataLoadingError: false,
+  isUserDataLoading: false,
+  userData: {} as TAppData['userData'],
 };
 
 export const appData = createSlice({
@@ -50,20 +54,19 @@ export const appData = createSlice({
       })
       .addCase(toggleFavoriteAction.fulfilled, (state, action) => {
         const {id, isFavorite} = action.payload;
+        const findOfferById = (offer: TOffer) => offer.id === id;
 
-        state.offers = state.offers.map((offer) => {
-          if (offer.id === id) {
-            return {
-              ...offer,
-              isFavorite: isFavorite,
-            };
-          }
-          return offer;
-        });
+        state.offers = state.offers.map((offer) =>
+          findOfferById(offer) ? {...offer, isFavorite} : offer
+        );
 
-        if (state.offer && state.offer.id === id) {
+        if (state.offer && findOfferById(state.offer)) {
           state.offer.isFavorite = isFavorite;
         }
+
+        state.nearbyOffers = state.nearbyOffers.map((offer) =>
+          findOfferById(offer) ? {...offer, isFavorite} : offer
+        );
 
         const existingIndex = state.favoriteOffers.findIndex(
           (offer) => offer.id === id
@@ -75,8 +78,8 @@ export const appData = createSlice({
         }
 
         state.isToggleFavoriteLoading = false;
+        state.hasError = false;
       })
-
       .addCase(toggleFavoriteAction.rejected, (state) => {
         state.isToggleFavoriteLoading = false;
         state.hasError = true;
@@ -133,6 +136,16 @@ export const appData = createSlice({
       })
       .addCase(fetchFavoriteOffersAction.rejected, (state) => {
         state.hasError = true;
+      })
+      .addCase(fetchUserDataAction.pending, (state) => {
+        state.isUserDataLoading = true;
+      })
+      .addCase(fetchUserDataAction.fulfilled, (state, action) => {
+        state.isUserDataLoading = false;
+        state.userData = action.payload;
+      })
+      .addCase(fetchUserDataAction.rejected, (state) => {
+        state.isUserDataLoading = false;
       });
   },
 });

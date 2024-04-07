@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {HelmetProvider} from 'react-helmet-async';
 import {Provider} from 'react-redux';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import browserHistory from './browser-history.ts';
 import {store} from './store';
+import {HistoryRouter} from './components/routes/history-route/history-route.tsx';
 import {checkAuthAction, fetchOffersAction} from './store/api-actions.ts';
 import {App} from './components/app/app.tsx';
 
@@ -18,10 +19,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ToastContainer/>
-      <HelmetProvider>
+      <HistoryRouter history={browserHistory}>
+        <ToastContainer/>
         <App/>
-      </HelmetProvider>
+      </HistoryRouter>
     </Provider>
-  </React.StrictMode>,
+  </React.StrictMode>
 );

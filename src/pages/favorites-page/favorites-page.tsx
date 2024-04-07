@@ -2,7 +2,7 @@ import {useEffect} from 'react';
 import {Helmet} from 'react-helmet-async';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {fetchFavoriteOffersAction} from '../../store/api-actions.ts';
-import { getFavoriteOffers } from '../../store/app-data/app-data.selectors.ts';
+import {getFavoriteOffers} from '../../store/app-data/app-data.selectors.ts';
 import {Header} from '../../components/header/header.tsx';
 import {Footer} from '../../components/footer/footer.tsx';
 import {FavoritesMain} from '../../components/favorites/favorites-main/favorites-main.tsx';
@@ -25,7 +25,7 @@ export function FavoritesPage(): JSX.Element {
   const favoritesEmptyClass = favoriteOffers.length === 0 ? 'page--favorites-empty' : '';
 
   return (
-    <div className={`page ${favoritesEmptyClass}`}>
+    <div className={`page ${favoritesEmptyClass}`} data-testid="favorites-page">
       <Helmet>
         <title>6 cities. Favorites</title>
       </Helmet>

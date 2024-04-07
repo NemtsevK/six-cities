@@ -1,17 +1,34 @@
 import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
-import styles from './style.module.css';
-import {AppRoute} from '../../const.ts';
 
 export function NotFoundPage(): JSX.Element {
   return (
-    <div className="page">
+    <div className="page page--gray page--main">
       <Helmet>
-        <title>6 cities. Page not found</title>
+        <title>6 cities :: 404 Not Found</title>
       </Helmet>
-      <main className={styles.main}>
-        <h1 className={styles.title}>404. Page not found</h1>
-        <Link className={styles.button} to={AppRoute.Main}>Go back to the main page</Link>
+
+      <main className="page__main page__main--index page__main--index-empty">
+        <h1 className="visually-hidden">Cities</h1>
+
+        <div className="cities">
+          <div className="cities__places-container cities__places-container--empty container">
+            <section className="cities__no-places">
+              <div className="cities__status-wrapper tabs__content">
+                <b className="cities__status">404 Not Found</b>
+                <p className="cities__status-description">
+                  We could not find any property available at the moment.
+                  Please, go{' '}
+                  <Link to="/" className="backLink">
+                    back to the main page
+                  </Link>
+                  .
+                </p>
+              </div>
+            </section>
+            <div className="cities__right-section"></div>
+          </div>
+        </div>
       </main>
     </div>
   );

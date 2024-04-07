@@ -15,7 +15,7 @@ export function LocationsItem({city}: LocationsItemProps): JSX.Element {
 
   return (
     <div className="favorites__locations locations locations--current">
-      <div className="locations__item">
+      <div className="locations__item" data-testid="locationsItemElement">
         <Link className="locations__item-link" to={`/?city=${city}`}>
           <span onClick={() => handleCityClick()}>{city}</span>
         </Link>
