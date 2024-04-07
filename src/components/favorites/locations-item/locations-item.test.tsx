@@ -4,7 +4,7 @@ import {citiesNames} from '../../../const.ts';
 import {getRandomCityName} from '../../../utils.ts';
 import {withHistory, withStore} from '../../../mocks/mock-component.tsx';
 import {makeFakeStore} from '../../../mocks/mocks.ts';
-import {LocationsItem} from './locations-items.tsx';
+import {LocationsItem} from './locations-item.tsx';
 
 describe('Component: LocationsItem', () => {
   let mockHistory: MemoryHistory;

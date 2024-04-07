@@ -25,6 +25,7 @@ export function App(): JSX.Element {
     <HelmetProvider>
       <Routes>
         <Route index element={<MainPage/>}/>
+        <Route path={AppRoute.Login} element={<LoginPage/>}/>
         <Route
           path={AppRoute.Favorites}
           element={
@@ -33,9 +34,8 @@ export function App(): JSX.Element {
             </PrivateRoute>
           }
         />
-        <Route path={`${AppRoute.Offer}/:id`} element={<OfferPage/>}/>
-        <Route path={AppRoute.Login} element={<LoginPage/>}/>
-        <Route path={AppRoute.NotFound} element={<NotFoundPage/>}/>
+        <Route path={AppRoute.Offer} element={<OfferPage/>}/>
+        <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     </HelmetProvider>
   );

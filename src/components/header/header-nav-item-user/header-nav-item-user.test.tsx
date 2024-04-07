@@ -1,6 +1,6 @@
 import {render, screen} from '@testing-library/react';
 import {MemoryHistory, createMemoryHistory} from 'history';
-import {withHistory} from '../../../mocks/mock-component.ts';
+import { withHistory } from '../../../mocks/mock-component.tsx';
 import {HeaderNavItemUser} from './header-nav-item-user.tsx';
 
 describe('Component: HeaderNavItemUser', () => {

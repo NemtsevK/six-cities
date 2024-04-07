@@ -1,12 +1,9 @@
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  height: 100vh;
-}
-
-.title {
-  margin: 0;
+.loader {
+  font-size: 35px;
+  text-align: center;
+  width: 200px;
+  height: 200px;
+  margin-top: 20%;
+  margin-left: auto;
+  margin-right: auto;
 }

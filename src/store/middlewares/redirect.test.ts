@@ -1,7 +1,7 @@
 import {MockStore, configureMockStore} from '@jedmao/redux-mock-store';
 import {AnyAction} from '@reduxjs/toolkit';
 import {State} from 'history';
-import {browserHistory} from '../../browser-history.ts';
+import browserHistory from '../../browser-history.ts';
 import {AppRoute} from '../../const.ts';
 import {redirectToRoute} from '../action.ts';
 import {redirect} from './redirect.ts';

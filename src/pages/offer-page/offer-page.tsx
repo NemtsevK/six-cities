@@ -108,9 +108,7 @@ export function OfferPage(): JSX.Element {
             offers={offersToMap}
           />
         </section>
-        <div className="container">
-          <NearbyOffers slicedNearbyOffers={slicedNearbyOffers}/>
-        </div>
+        <NearbyOffers slicedNearbyOffers={slicedNearbyOffers}/>
       </main>
     </div>
   );

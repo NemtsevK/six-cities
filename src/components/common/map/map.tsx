@@ -38,14 +38,16 @@ export function Map({city, offers, activeOfferId, className}: MapProps): JSX.Ele
       markerLayer.current.clearLayers();
 
       offers.forEach((offer) => {
-        const marker = leaflet.marker(
-          [offer.location.latitude, offer.location.longitude],
-          {
-            icon: offer.id === activeOfferId ? ACTIVE_ICON : DEFAULT_ICON
-          }
-        );
+        if (offer && offer.location) {
+          const marker = leaflet.marker(
+            [offer.location.latitude, offer.location.longitude],
+            {
+              icon: offer.id === activeOfferId ? ACTIVE_ICON : DEFAULT_ICON
+            }
+          );
 
-        marker.addTo(markerLayer.current);
+          marker.addTo(markerLayer.current);
+        }
       });
     }
   }, [activeOfferId, map, offers]);
