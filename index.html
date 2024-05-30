@@ -11,6 +11,19 @@
   <link rel="icon" href="img/favicons/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="img/favicons/apple.png">
   <link rel="manifest" href="data:application/manifest+json;base64,ewogICJpY29ucyI6IFsKICAgIHsgInNyYyI6ICJpbWFnZXMvZmF2aWNvbnMvMTkyLnBuZyIsICJ0eXBlIjogImltYWdlL3BuZyIsICJzaXplcyI6ICIxOTJ4MTkyIiB9LAogICAgeyAic3JjIjogImltYWdlcy9mYXZpY29ucy81MTIucG5nIiwgInR5cGUiOiAiaW1hZ2UvcG5nIiwgInNpemVzIjogIjUxMng1MTIiIH0KICBdCn0K">
+  <script type="text/javascript">
+    // https://github.com/rafgraph/spa-github-pages
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+          l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
   <script type="module" crossorigin src="/six-cities/assets/index-4452a4b1.js"></script>
   <link rel="stylesheet" href="/six-cities/assets/index-700fcd94.css">
 </head>
