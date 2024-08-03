@@ -1,8 +1,10 @@
 {
   "name": "six-cities",
-  "author": "Nemtsev Konstantin <nemtsevk@hotmail.com> (https://github.com/nemtsev-k)",
-  "description": "Проект «Шесть городов» от HTML Academy",
-  "homepage": "https://nemtsev-k.github.io/six-cities/",
+  "author": "Nemtsev Konstantin <nemtsevk@hotmail.com> (https://github.com/NemtsevK)",
+  "description": "Личный проект «Шесть городов»",
+  "homepage": "https://nemtsevk.github.io/six-cities/",
+  "repository": "https://github.com/NemtsevK/six-cities/",
+  "private": true,
   "type": "module",
   "scripts": {
     "start": "vite",
@@ -65,5 +67,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "engines": {
+    "node": "^20.15.1",
+    "npm": "^10.8.2"
   }
 }
